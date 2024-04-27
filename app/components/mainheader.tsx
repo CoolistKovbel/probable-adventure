@@ -2,14 +2,22 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { getBlockNum, getEthereumAccount } from "../lib/web3";
 
 const MainHeader = () => {
   const [user, setUser] = useState(false);
+  const [userAccount, setUserAccount] = useState("")
 
-  const connectWallet = () => {
+  const connectWallet = async () => {
     try {
       console.log("weeoeeeeooooxs");
-      setUser((prev) => !prev);
+      const account = await getEthereumAccount()
+      await getBlockNum()
+      
+      if(account){
+        setUser((prev) => !prev);
+        setUserAccount(account)
+      }
       console.log(user);
     } catch (error) {
       console.log(error);
@@ -57,7 +65,7 @@ const MainHeader = () => {
       {user && (
         <div className="flex items-center justify-between">
           <h4>
-            Hello, <span>user</span>
+            Hello, <span>{userAccount.substring(0, 7)}</span>
           </h4>
 
           <div className="flex items-center  gap-5">
