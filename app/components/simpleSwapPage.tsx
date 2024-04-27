@@ -2,36 +2,30 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { convertEthToNCT } from "../lib/web3";
+import { ethers } from "ethers";
 
 const SimpleSwapPage = () => {
   const [ETHAmount, setETHAmount] = useState<any>("");
   const [NCTAmount, setNCTAmount] = useState<any>("");
-  const [exchangeRate, setExchangeRate] = useState(0.000015); // Default exchange rate
-  
+  const tokenPerEth = 100;
 
   // Function to handle ETH amount change
   const handleETHChange = (e: any) => {
     const amount = parseFloat(e.target.value);
     setETHAmount(amount);
     // Calculate the equivalent NCT amount based on the exchange rate
-    const calculatedNCTAmount = (amount / exchangeRate) * amount;
-    setNCTAmount(calculatedNCTAmount.toString());
+    const calculatedNCTAmount =
+      Number(ethers.utils.parseEther(amount.toString())) * tokenPerEth;
+    setNCTAmount(ethers.utils.formatEther(calculatedNCTAmount.toString()));
   };
 
-  // Function to handle NCT amount change
-  const handleNCTChange = (e: any) => {
-    const amount = parseFloat(e.target.value);
-    setNCTAmount(amount);
-    // Calculate the equivalent ETH amount based on the exchange rate
-    const calculatedETHAmount = (amount / exchangeRate) * exchangeRate;
-    setETHAmount(calculatedETHAmount.toString());
-  };
-
-  const handleSwap = (e: any) => {
+  const handleSwap = async (e: any) => {
     e.preventDefault();
     try {
       console.log("swapping tokens");
-      console.log(`ETH ${ETHAmount}, NCT ${NCTAmount}`);
+
+      const gg = await convertEthToNCT(ETHAmount);
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +33,6 @@ const SimpleSwapPage = () => {
 
   return (
     <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md">
-
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-4xl font-bold mb-2">Swap Now</h2>
@@ -51,8 +44,9 @@ const SimpleSwapPage = () => {
           </Link>
         </div>
         <p className="text-gray-300 p-2">
-          Convert your Native ETH token into our special NueroClump to be able
-          to create a source to pulse through space fuel the path for others
+          Convert your Native ETH token into our special NueroClump for a better
+          price then the market. Gets your now and grow your bag through our
+          generator
         </p>
       </header>
 
@@ -61,7 +55,6 @@ const SimpleSwapPage = () => {
         className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4"
         onSubmit={handleSwap}
       >
-        
         <label htmlFor="ETH" className="flex flex-col gap-2">
           <span className="bg-[#111] p-1 inline-block rounded-lg">
             Ethereum
@@ -90,11 +83,7 @@ const SimpleSwapPage = () => {
             type="number"
             id="NCT"
             name="NCT"
-            step="0.00001"
-            min="0.00015"
-            max="100"
             value={NCTAmount}
-            onChange={handleNCTChange}
             disabled
             className="bg-[#111] p-2 text-white drop-shadow-lg rounded-md text-white font-mono"
           />
