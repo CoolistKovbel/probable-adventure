@@ -1,14 +1,34 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const SimpleSwapPage = () => {
-  const handleSwap = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const ETHAmount = formData.get("ETH");
-    const NCTAmount = formData.get("NCT");
+  const [ETHAmount, setETHAmount] = useState<any>("");
+  const [NCTAmount, setNCTAmount] = useState<any>("");
+  const [exchangeRate, setExchangeRate] = useState(0.000015); // Default exchange rate
+  
 
+  // Function to handle ETH amount change
+  const handleETHChange = (e: any) => {
+    const amount = parseFloat(e.target.value);
+    setETHAmount(amount);
+    // Calculate the equivalent NCT amount based on the exchange rate
+    const calculatedNCTAmount = (amount / exchangeRate) * amount;
+    setNCTAmount(calculatedNCTAmount.toString());
+  };
+
+  // Function to handle NCT amount change
+  const handleNCTChange = (e: any) => {
+    const amount = parseFloat(e.target.value);
+    setNCTAmount(amount);
+    // Calculate the equivalent ETH amount based on the exchange rate
+    const calculatedETHAmount = (amount / exchangeRate) * exchangeRate;
+    setETHAmount(calculatedETHAmount.toString());
+  };
+
+  const handleSwap = (e: any) => {
+    e.preventDefault();
     try {
       console.log("swapping tokens");
       console.log(`ETH ${ETHAmount}, NCT ${NCTAmount}`);
@@ -19,11 +39,12 @@ const SimpleSwapPage = () => {
 
   return (
     <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md">
+
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-4xl font-bold mb-2">Swap Now</h2>
           <Link
-            href="/"
+            href="/trade"
             className="text-4xl hover:bg-[#111] text-center rounded-lg"
           >
             <i>📍</i>
@@ -37,10 +58,11 @@ const SimpleSwapPage = () => {
 
       {/* Swap form */}
       <form
-        className="p-4 flex  flex-col bg-[#222] rounded-md drop-shadow-lg gap-4"
+        className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4"
         onSubmit={handleSwap}
       >
-        <label htmlFor="ETH" className="flex  flex-col gap-2">
+        
+        <label htmlFor="ETH" className="flex flex-col gap-2">
           <span className="bg-[#111] p-1 inline-block rounded-lg">
             Ethereum
           </span>
@@ -49,13 +71,18 @@ const SimpleSwapPage = () => {
             id="ETH"
             name="ETH"
             placeholder="enter amount"
+            step="0.00001"
+            min="0.00015"
+            max="10"
+            value={ETHAmount}
+            onChange={handleETHChange}
             className="bg-[#111] p-2 text-white drop-shadow-lg rounded-md text-white font-mono"
           />
         </label>
 
-        <i className="text-[4rem] p-2 mx-auto">🔄</i>
+        <i className="text-[4rem] p-2 mx-auto cursor-pointer">🔄</i>
 
-        <label htmlFor="NCT" className="flex  flex-col gap-2">
+        <label htmlFor="NCT" className="flex flex-col gap-2">
           <span className="bg-[#111] p-1 inline-block rounded-lg">
             NeruoClumpToken
           </span>
@@ -63,7 +90,12 @@ const SimpleSwapPage = () => {
             type="number"
             id="NCT"
             name="NCT"
-            placeholder="enter amount"
+            step="0.00001"
+            min="0.00015"
+            max="100"
+            value={NCTAmount}
+            onChange={handleNCTChange}
+            disabled
             className="bg-[#111] p-2 text-white drop-shadow-lg rounded-md text-white font-mono"
           />
         </label>

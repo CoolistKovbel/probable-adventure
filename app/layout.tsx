@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Photune",
+  title: "PhotuneLightway",
   description: "Enter the dApp to claim fortune, claim nfts or tokens to continue with your journey. Be sure to hodl save up for the next visit.",
 };
 

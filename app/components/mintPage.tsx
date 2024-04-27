@@ -8,10 +8,13 @@ import { nftTokenAddress } from "../lib/web3";
 import nftContract from "../lib/abis/nft.json";
 
 const MintPage = () => {
+
   const handleNftMint = async (e: React.FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const nftAmount = formData.get("nftAmount");
+
 
     try {
       if (typeof window !== "undefined" && window.ethereum) {
@@ -39,15 +42,18 @@ const MintPage = () => {
     } catch (error) {
       console.log(error);
     }
+
+
   };
 
   return (
     <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md h-full md:h-[500px] flex flex-col justify-around">
+      
       <header className="w-full mb-2">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-5xl font-bold">Mint Now</h2>
           <Link
-            href="/"
+            href="/mint"
             className="text-4xl hover:bg-[#111] text-center rounded-lg"
           >
             <i>📍</i>
@@ -108,8 +114,11 @@ const MintPage = () => {
               submit
             </button>
           </form>
+
+          
         </div>
       </div>
+      
     </div>
   );
 };

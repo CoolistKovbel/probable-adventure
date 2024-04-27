@@ -32,7 +32,7 @@ const Genereate = () => {
         <div className="flex items-center justify-between w-full">
           <h2 className="text-4xl font-bold mb-2">Particle Becon</h2>
           <Link
-            href="/"
+            href="/generate"
             className="text-4xl hover:bg-[#111] text-center rounded-lg"
           >
             <i>📍</i>
@@ -87,6 +87,7 @@ const Genereate = () => {
           </div>
         ))}
       </div>
+
     </div>
   );
 };
