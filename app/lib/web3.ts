@@ -1,14 +1,14 @@
 import { ethers } from "ethers";
-
+ 
 import token from "./abis/token.json";
+import engine from "./abis/engine.json"
 
 // nft token contract
 export const nftTokenAddress = "0x26780E03eDb289D75E1b61219a92ad729a696937";
-export const NeuronClumpTokenAddress =
-  "0xDd332Aa25D185CcD09A25db1e312e991879062cb";
 // erc token contract
-
+export const NeuronClumpTokenAddress = "0xDd332Aa25D185CcD09A25db1e312e991879062cb";
 // smart contract
+export const PhotuneLightwayContract = "0x15ab812CfFA45E696C4F073080507ece11b1Cc5e"
 
 export const getEthereumObject = () => {
   return typeof window !== "undefined" ? window.ethereum : null;
@@ -91,3 +91,96 @@ export const convertEthToNCT = async (ethToken: any) => {
     console.log(error);
   }
 };
+
+export const viewVaults = async() => {
+  try {
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
+
+    let index = 0;
+    let vaults = [];
+
+    while(true) {
+        try {
+          const vault = await contractInstance.vaults(index);
+
+          console.log("the cujrrent index is ", index)
+
+          if (vault.name === "" || vault.stakingToken === ethers.constants.AddressZero) {
+              break; // Exit the loop if the vault is empty or invalid
+          }
+
+          // Push the vault details into the vaults array
+          vaults.push(vault);
+          
+          // Increment the index for the next iteration
+          index++;
+      } catch (error) {
+          // Exit the loop if an error occurs (likely due to an invalid index)
+          break;
+      }
+    }
+
+    console.log(vaults, "in web3");
+    return vaults
+
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// Add token auto compoiund
+
+export const autoCompoud = async () => {
+  try {
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// Add token to compound
+export const addTokenToVault = async ()=> {
+  try {
+    console.log("A")
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// add nft token to auto compound
+
+// remove token from auto compound
+
+// ======
+// Remove token from auto comppound
+
+// remove token from compound
+//=========
+
+// withdrawl tokens
+
+// update apy for specfic vault
+
+// =======
+
+// Add token to smart contract
+
+// update token smart contract
+
+// add new vault
+
+//=========
+
+// mint nft 
+
+// create lp
