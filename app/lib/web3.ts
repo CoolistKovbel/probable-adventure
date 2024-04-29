@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import token from "./abis/token.json";
 import engine from "./abis/engine.json"
 
+
 // nft token contract
 export const nftTokenAddress = "0x26780E03eDb289D75E1b61219a92ad729a696937";
 // erc token contract
@@ -140,8 +141,23 @@ export const viewVaults = async() => {
 
 // Add token auto compoiund
 
-export const autoCompoud = async () => {
+export const autoCompoud = async (vault:any) => {
+
   try {
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
+
+    const res = await contractInstance.compoundRewards(vault,{
+      gasLimit: 600000,
+    });
     
   } catch (error) {
     console.log(error)
@@ -149,9 +165,29 @@ export const autoCompoud = async () => {
 }
 
 // Add token to compound
-export const addTokenToVault = async ()=> {
+export const addTokenToVault = async (vaultId:any, amount:any)=> {
   try {
-    console.log("A")
+    console.log("Adding token through web3. initilizing connection")
+
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
+
+    const res = await contractInstance.joinVault(vaultId, amount,{
+      gasLimit: 600000,
+    });
+
+
+
+
+
   } catch (error) {
     console.log(error)
   }

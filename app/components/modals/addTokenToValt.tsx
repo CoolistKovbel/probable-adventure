@@ -1,9 +1,10 @@
 "use client";
 
 import { useModal } from "@/app/hooks/use-modal-store";
+import { addTokenToVault } from "@/app/lib/web3";
 
 const AddTokenToVault = () => {
-  const { isOpen, onClose, type } = useModal();
+  const { isOpen, onClose, type, signature } = useModal();
 
   const urlParts = window.location.href.split("/");
   const desiredUrl = "/" + urlParts.slice(3).join("/");
@@ -15,9 +16,18 @@ const AddTokenToVault = () => {
 
     const formData = new FormData(e.currentTarget);
     formData.append("sessoinUrl", desiredUrl);
-
+    const amount = formData.get("tokenAmount")
+    
     try {
-      console.log("handling token stake");
+      console.log("handling token stake", amount);
+      console.log("Signature", signature)
+
+      const gg = await addTokenToVault(signature, amount)
+
+      console.log("web,", gg)
+
+      onClose();
+
     } catch (error) {
       console.error("Error:", error);
       // TODO: Handle error
