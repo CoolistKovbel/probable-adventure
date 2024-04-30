@@ -13,7 +13,9 @@ export default function Home() {
       <MainHeader />
 
       <section className="flex items-center justify-between flex-col mt-10 gap-5">
+
         <header className="w-fullmd:w-[80%] bg-[#111] p-4 rounded-lg drop-shadow-lg flex items-center justify-around mx-auto md:flex-row flex-col gap-5">
+
           <div className="w-full md:w-[40%] text-center">
             <h2 className="text-2xl md:text-4xl font-bold mb-5 capitalize">
               Hold the light and paint a new way
@@ -41,6 +43,7 @@ export default function Home() {
               fill
             />
           </div>
+          
         </header>
 
         <MintPage />
@@ -48,6 +51,7 @@ export default function Home() {
         <SimpleSwapPage />
 
         <Genereate />
+
       </section>
 
       <MainFooter />

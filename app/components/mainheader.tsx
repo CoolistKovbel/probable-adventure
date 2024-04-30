@@ -29,11 +29,15 @@ const MainHeader = () => {
   };
 
   return (
-    <header className="w-full bg-[#111] p-5 drop-shadow-lg">
-      <div className="flex items-center justify-between mb-5">
-        <h2 className="text-2xl flex items-center gap-4">
-          <Link href="/">PhotuneLightway</Link>
-          <Image src="/photune2.png" alt='hate my life' width={100} height={100} className='rounded-full' />
+    <header className="w-full bg-[#111] p-5 drop-shadow-lg rounded-lg">
+
+      <div className="flex items-center justify-between mb-5 md:flex-row flex-col">
+
+        <h2 className="flex items-center md:gap-4">
+          <Link href="/" className="font-bold text-xl md:text-2xl">PhotuneLightway</Link>
+          <div className="w-[32px] md:w-[100px] h-[32px] md:h-[100px] relative">
+            <Image src="/photune2.png" alt='hate my life' fill />
+          </div>
         </h2>
 
         {user ? (
