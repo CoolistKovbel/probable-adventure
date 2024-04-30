@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { viewVaults } from "../lib/web3";
+import { leaveVault, userVaultz, viewVaults } from "../lib/web3";
 import { useModal } from "../hooks/use-modal-store";
+import { ethers } from "ethers";
 
 const Genereate = () => {
   const [deVaults, setDeVaults] = useState<any>([]);
+  const [userStake, setUserStake] = useState("")
   const { onOpen } = useModal();
 
   // Grab all the vaults
@@ -38,9 +40,13 @@ const Genereate = () => {
   useEffect(() => {
     const int = async () => {
       const vaults = await viewVaults();
+      const userVault = await userVaultz()
+
 
       console.log(vaults, "in de clie4nt");
+      console.log("userVaults", userVault)
 
+      setUserStake(userVault as string)
       setDeVaults(vaults);
     };
 
@@ -53,7 +59,7 @@ const Genereate = () => {
   // console.log("deVaults date created", deVaults[0][3].toString())
   // console.log("deVaults total amnount staked ", deVaults[0][6].toString())
 
-  const claimTokens = async (e: React.FormEvent<HTMLFormElement>) => {
+  const claimTokens = async (e: any, vaultId: any) => {
     e.preventDefault();
     try {
       console.log("Claiming tokensd");
@@ -73,13 +79,12 @@ const Genereate = () => {
     }
   };
 
-  const handleVaultRemoveToken = async (e: any) => {
+  const handleVaultRemoveToken = async (e: any, vaultId:any) => {
     e.preventDefault();
     try {
       console.log("Soryy adding tokens to vault");
 
-      // onOpen("CreaateTokenVaultTransfer");
-
+      await leaveVault(vaultId)
 
 
     } catch (error) {
@@ -129,7 +134,7 @@ const Genereate = () => {
                 <h2 className="text-2xl font-bold capitalize">
                   {item.vaultType}
                 </h2>
-                <p className="text-sm">Total staked: {item[6].toString()}</p>
+                <p className="text-sm">Total staked: {ethers.utils.formatUnits(item[6], 'ether')} </p>
               </header>
 
               <p className="text-2xl font-bold text-center">
@@ -144,7 +149,7 @@ const Genereate = () => {
 
                 <button
                   className="bg-[#333] p-2 drop-shadow-lg w-full text-center hover:bg-[#222] rounded-md"
-                  onClick={claimTokens}
+                  onClick={(e:any) => claimTokens(e, index)}
                 >
                   claim
                 </button>
@@ -152,7 +157,7 @@ const Genereate = () => {
 
               {/* User */}
               <div className="p-4 bg-[#000]">
-                <p className="mb-2">Staked: {0}</p>
+                <p className="mb-2">Staked: {userStake}</p>
 
                 <div className="w-full flex items-center justify-between">
                   <button
@@ -163,7 +168,7 @@ const Genereate = () => {
                   </button>
                   <button
                     className="bg-[#333] p-2 drop-shadow-lg  text-center hover:bg-[#222] rounded-md"
-                    onClick={handleVaultRemoveToken}
+                    onClick={(e:any) => handleVaultRemoveToken(e, index)}
                   >
                     remove
                   </button>

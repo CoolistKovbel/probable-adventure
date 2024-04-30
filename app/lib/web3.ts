@@ -1,15 +1,16 @@
 import { ethers } from "ethers";
- 
-import token from "./abis/token.json";
-import engine from "./abis/engine.json"
 
+import token from "./abis/token.json";
+import engine from "./abis/engine.json";
 
 // nft token contract
 export const nftTokenAddress = "0x26780E03eDb289D75E1b61219a92ad729a696937";
 // erc token contract
-export const NeuronClumpTokenAddress = "0xDd332Aa25D185CcD09A25db1e312e991879062cb";
+export const NeuronClumpTokenAddress =
+  "0xDd332Aa25D185CcD09A25db1e312e991879062cb";
 // smart contract
-export const PhotuneLightwayContract = "0x15ab812CfFA45E696C4F073080507ece11b1Cc5e"
+export const PhotuneLightwayContract =
+  "0x1bD20D8641Ec3799CB5Da99969f80bd6C2B03264";
 
 export const getEthereumObject = () => {
   return typeof window !== "undefined" ? window.ethereum : null;
@@ -93,9 +94,8 @@ export const convertEthToNCT = async (ethToken: any) => {
   }
 };
 
-export const viewVaults = async() => {
+export const viewVaults = async () => {
   try {
-
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     // Get the signer
     const signer = provider.getSigner();
@@ -109,42 +109,84 @@ export const viewVaults = async() => {
     let index = 0;
     let vaults = [];
 
-    while(true) {
-        try {
-          const vault = await contractInstance.vaults(index);
+    while (true) {
+      try {
+        const vault = await contractInstance.vaults(index);
 
-          console.log("the cujrrent index is ", index)
+        console.log("the cujrrent index is ", index);
 
-          if (vault.name === "" || vault.stakingToken === ethers.constants.AddressZero) {
-              break; // Exit the loop if the vault is empty or invalid
-          }
+        if (
+          vault.name === "" ||
+          vault.stakingToken === ethers.constants.AddressZero
+        ) {
+          break; // Exit the loop if the vault is empty or invalid
+        }
 
-          // Push the vault details into the vaults array
-          vaults.push(vault);
-          
-          // Increment the index for the next iteration
-          index++;
+        // Push the vault details into the vaults array
+        vaults.push(vault);
+
+        // Increment the index for the next iteration
+        index++;
       } catch (error) {
-          // Exit the loop if an error occurs (likely due to an invalid index)
-          break;
+        // Exit the loop if an error occurs (likely due to an invalid index)
+        break;
       }
     }
 
     console.log(vaults, "in web3");
-    return vaults
-
-    
+    return vaults;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
+
+export const userVaultz = async () => {
+  try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+    const signerAddress = await signer.getAddress();
+
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
+
+    const gg = await contractInstance.userVaults(signerAddress, 0);
+
+    console.log(ethers.utils.formatEther(gg[0].toString()), "What is in here");
+
+    return ethers.utils.formatEther(gg[0].toString());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const leaveVault = async (vaultId: any) => {
+  try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
+
+    const gg = await contractInstance.leaveVaultAndClaimRewards(vaultId);
+
+    console.log(gg);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // Add token auto compoiund
 
-export const autoCompoud = async (vault:any) => {
-
+export const autoCompoud = async (vault: any) => {
   try {
-
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     // Get the signer
     const signer = provider.getSigner();
@@ -155,20 +197,18 @@ export const autoCompoud = async (vault:any) => {
       signer
     );
 
-    const res = await contractInstance.compoundRewards(vault,{
+    const res = await contractInstance.compoundRewards(vault, {
       gasLimit: 600000,
     });
-    
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 // Add token to compound
-export const addTokenToVault = async (vaultId:any, amount:any)=> {
+export const addTokenToVault = async (vaultId: any, amount: any) => {
   try {
-    console.log("Adding token through web3. initilizing connection")
-
+    console.log("Adding token through web3. initilizing connection");
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     // Get the signer
@@ -180,18 +220,13 @@ export const addTokenToVault = async (vaultId:any, amount:any)=> {
       signer
     );
 
-    const res = await contractInstance.joinVault(vaultId, amount,{
+    const res = await contractInstance.joinVault(vaultId, amount, {
       gasLimit: 600000,
     });
-
-
-
-
-
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 // add nft token to auto compound
 
@@ -217,6 +252,6 @@ export const addTokenToVault = async (vaultId:any, amount:any)=> {
 
 //=========
 
-// mint nft 
+// mint nft
 
 // create lp
