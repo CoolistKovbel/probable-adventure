@@ -6,10 +6,10 @@ const MainFooter = () => {
   return (
     <footer className='flex items-center p-10 bg-[#111] mt-10 rounded-md drop-shadow-lg w-full justify-between flex-col md:flex-row gap-4 md:gap-0'>
 
-        <header className='flex items-center'>
+        <header className='flex items-center '>
 
             <div>
-                <div className='flex items-center gap-4 mb-2'>
+                <div className='flex items-center gap-4 mb-2 md:flex-row flex-col'>
                     <h3 className='text-4xl font-bold'><Link href="/">PhotuneLightway</Link></h3>
                     <Image src="/photune2.png" alt='hate my life' width={100} height={100} className='rounded-full' />
                 </div>
@@ -17,6 +17,7 @@ const MainFooter = () => {
                     Capture the moment, start your journey through crypto safely here.
                 </p>
             </div>
+
         </header>
 
         <div className='bg-[#111] p-2 rounded-lg drop-shadow-lg w-[140px]'>
@@ -28,6 +29,7 @@ const MainFooter = () => {
                 <Link href="/about" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">Generate</Link>
             </nav>
         </div>
+
   </footer>
   )
 }

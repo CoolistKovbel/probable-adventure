@@ -1,4 +1,6 @@
 import { InfiniteMovingCardsDemo } from "@/app/components/InfitintSc";
+import MintG from "@/app/components/mint-g";
+import { EmailList } from "@/app/components/waitlist/emailList";
 import Image from "next/image";
 import React from "react";
 
@@ -6,7 +8,7 @@ const Page = () => {
   return (
     <section className="w-full min-h-screen flex flex-col gap-5 mt-5">
       <header className="text-center p-2 bg-[#222] ">
-        <h1 className="text-2xl font-bold mb-5 p-5">
+        <h1 className="text-2xl md:text-5xl font-bold mb-5 p-5">
           PhotuneLightway Collections
         </h1>
 
@@ -35,7 +37,7 @@ const Page = () => {
       </div>
 
       <div className="bg-[#222] p-10 drop-shadow-lg rounded-lg">
-        <h2 className="text-2xl font-bold text-center capitalize mb-5">
+        <h2 className="text-2xl md:text-5xl font-bold text-center capitalize mb-5">
           Want to start, get started with your own erc-721 token
         </h2>
 
@@ -84,44 +86,36 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="p-10 bg-[#222]">
+      <div className="p-5 bg-[#222]">
+        <h2 className="text-5xl capitalize mb-5 font-bold text-center">
+          Mint NFT collection
+        </h2>
 
-        <h2>Mint NFT collection</h2>
-
-        <div className="flex items-center w-[80%] mx-auto">
-
-          <div className="w-[300px] h-[300px] relative">
-            <Image src="/photune.png" alt="myster nft minting" fill />
+        <div className="flex items-center w-[80%] mx-auto flex-col md:flex-row gap-4 mb-10 bg-[#111] p-10 rounded-lg justify-center gap-10 drop-shadow-lg">
+          <div className="w-[300px] h-[300px] relative ">
+            <Image
+              src="/photune.png"
+              alt="myster nft minting"
+              fill
+              className="drop-shadow-lg rounded-lg"
+            />
           </div>
 
-          <div>
-            <h2>Mint out of 222</h2>
-            <p>
+          <div className="w-[50%]">
+            <h2 className="text-2xl md:text-4xl capitalize mb-4 text-center font-bold">
+              Mint out of 222
+            </h2>
+            <p className="text-sm">
               Capture one of the 222 moments that can be use to unlocked extra
               features within the site. If you hold onto them you will be able
               to use it in other sites.
             </p>
 
-
-            <form>
-              <input type="number" placeholder="poo"  />
-              <button>mint</button>
-            </form>
-
-
+            <MintG />
           </div>
-
         </div>
 
-        <div>
-          <h3>Subscribe to get the latest updates</h3>
-          <form>
-            <input type="email" />
-            <button>Subscribe</button>
-          </form>
-        </div>
-
-
+        <EmailList />
       </div>
     </section>
   );

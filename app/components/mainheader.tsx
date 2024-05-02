@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { getBlockNum, getEthereumAccount } from "../lib/web3";
+import { getBlockNum, getEthereumAccount, getTotalAmountNFTOwn } from "../lib/web3";
 import Image from "next/image";
 
 const MainHeader = () => {
   const [user, setUser] = useState(false);
   const [userAccount, setUserAccount] = useState("")
   const [userBal, setUserBal] = useState<any>("")
+  const [userNFT, setUserNft] = useState("")
+
+
 
   const connectWallet = async () => {
     try {
@@ -19,6 +22,8 @@ const MainHeader = () => {
       if(account){
         setUser((prev) => !prev);
         setUserAccount(account)
+        const nfts = await getTotalAmountNFTOwn(account)
+        setUserNft(nfts)
       }
 
       setUserBal(userBal)
@@ -33,10 +38,10 @@ const MainHeader = () => {
 
       <div className="flex items-center justify-between mb-5 md:flex-row flex-col">
 
-        <h2 className="flex items-center md:gap-4">
+        <h2 className="flex items-center md:gap-4 gap-4 mb-4 md:mb-0">
           <Link href="/" className="font-bold text-xl md:text-2xl">PhotuneLightway</Link>
           <div className="w-[32px] md:w-[100px] h-[32px] md:h-[100px] relative">
-            <Image src="/photune2.png" alt='hate my life' fill />
+            <Image src="/photune2.png" alt='hate my life' fill className="rounded-lg" />
           </div>
         </h2>
 
@@ -85,7 +90,7 @@ const MainHeader = () => {
 
           <div className="flex items-center  gap-5">
             <p>Bal: {userBal.toString().slice(0, 4)}</p>
-            <p>converted: 1</p>
+            <p>NFT HOLDing: {userNFT}</p>
           </div>
         </div>
       )}

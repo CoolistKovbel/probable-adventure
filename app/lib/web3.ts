@@ -2,9 +2,10 @@ import { ethers } from "ethers";
 
 import token from "./abis/token.json";
 import engine from "./abis/engine.json";
+import nftContract from "./abis/nft.json"
 
 // nft token contract
-export const nftTokenAddress = "0x26780E03eDb289D75E1b61219a92ad729a696937";
+export const nftTokenAddress = "0x8652D8138Ec8f66F5C7EB831A1146bA4C4C25C78";
 // erc token contract
 export const NeuronClumpTokenAddress =
   "0xDd332Aa25D185CcD09A25db1e312e991879062cb";
@@ -70,6 +71,33 @@ export const getBlockNum = async () => {
     console.log(error);
   }
 };
+
+export const getTotalAmountNFTOwn = async (user:string) => {
+  try {
+    if (typeof window !== "undefined" && window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+      // Get the signer from the provider
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
+
+      const contractInstance = new ethers.Contract(
+        nftTokenAddress,
+        nftContract.abi,
+        signer
+      );
+
+      const res = await contractInstance.balanceOf(address);
+
+      console.log(res.toString(), "debal ")
+
+      return res.toString()
+
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export const convertEthToNCT = async (ethToken: any) => {
   try {

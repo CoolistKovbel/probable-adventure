@@ -3,18 +3,16 @@
 import { ethers } from "ethers";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { nftTokenAddress } from "../lib/web3";
 import nftContract from "../lib/abis/nft.json";
+import { toast } from "react-toastify";
 
 const MintPage = () => {
-
   const handleNftMint = async (e: React.FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const nftAmount = formData.get("nftAmount");
-
 
     try {
       if (typeof window !== "undefined" && window.ethereum) {
@@ -30,25 +28,48 @@ const MintPage = () => {
           signer
         );
 
-        console.log(`handling mint ${address}`, nftAmount);
+        toast(`handling mint ${address} - ${nftAmount}`);
 
         const res = await contractInstance.mint(nftAmount, {
-          value: ethers.utils.parseEther((0.0042).toString()),
+          value: ethers.utils.parseEther((0.042).toString()),
           gasLimit: 600000,
         });
 
-        console.log(res);
+        toast(await res.wait());
+        toast(res);
       }
     } catch (error) {
       console.log(error);
     }
-
-
   };
+
+  useEffect(() => {
+    // Listen for the UserMinted event
+    if (typeof window !== "undefined" && window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+      const contractInstance = new ethers.Contract(
+        nftTokenAddress,
+        nftContract.abi,
+        provider
+      );
+
+      contractInstance.on("UserMinted", (user, nft) => {
+        // Handle the event here
+        console.log("UserMinted event:", user, nft);
+        toast(`User ${user} minted NFT ${nft}`);
+      });
+
+   
+      return () => {
+        contractInstance.removeAllListeners("UserMinted");
+      };
+    }
+  }, []); 
+
 
   return (
     <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md h-full md:h-[700px] flex flex-col justify-around">
-      
       <header className="w-full mb-2">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-5xl font-bold">Mint Now</h2>
@@ -114,11 +135,8 @@ const MintPage = () => {
               submit
             </button>
           </form>
-
-          
         </div>
       </div>
-      
     </div>
   );
 };
