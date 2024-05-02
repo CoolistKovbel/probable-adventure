@@ -33,6 +33,7 @@ const SimpleSwapPage = () => {
 
   return (
     <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md">
+      
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-4xl font-bold mb-2">Swap Now</h2>
@@ -93,6 +94,7 @@ const SimpleSwapPage = () => {
           swap
         </button>
       </form>
+
     </div>
   );
 };
