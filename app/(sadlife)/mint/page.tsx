@@ -83,6 +83,46 @@ const Page = () => {
           </p>
         </div>
       </div>
+
+      <div className="p-10 bg-[#222]">
+
+        <h2>Mint NFT collection</h2>
+
+        <div className="flex items-center w-[80%] mx-auto">
+
+          <div className="w-[300px] h-[300px] relative">
+            <Image src="/photune.png" alt="myster nft minting" fill />
+          </div>
+
+          <div>
+            <h2>Mint out of 222</h2>
+            <p>
+              Capture one of the 222 moments that can be use to unlocked extra
+              features within the site. If you hold onto them you will be able
+              to use it in other sites.
+            </p>
+
+
+            <form>
+              <input type="number" placeholder="poo"  />
+              <button>mint</button>
+            </form>
+
+
+          </div>
+
+        </div>
+
+        <div>
+          <h3>Subscribe to get the latest updates</h3>
+          <form>
+            <input type="email" />
+            <button>Subscribe</button>
+          </form>
+        </div>
+
+
+      </div>
     </section>
   );
 };
