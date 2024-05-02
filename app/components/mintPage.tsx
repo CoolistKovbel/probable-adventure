@@ -47,7 +47,7 @@ const MintPage = () => {
   };
 
   return (
-    <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md h-full md:h-[500px] flex flex-col justify-around">
+    <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md h-full md:h-[700px] flex flex-col justify-around">
       
       <header className="w-full mb-2">
         <div className="flex items-center justify-between w-full">

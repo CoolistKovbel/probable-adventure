@@ -19,7 +19,7 @@ const MainFooter = () => {
             </div>
         </header>
 
-        <div className='bg-[#111] p-2 rounded-lg drop-shadow-lg'>
+        <div className='bg-[#111] p-2 rounded-lg drop-shadow-lg w-[140px]'>
             <h3 className='text-2xl font-bold text-center mb-2'>Links</h3>
             <nav className='flex items-center flex-col gap-2'>
                 <Link href="/about" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">About</Link>

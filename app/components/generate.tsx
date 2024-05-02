@@ -92,8 +92,6 @@ const Genereate = () => {
     }
   };
 
-
-
   const handleAutoCompound = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
