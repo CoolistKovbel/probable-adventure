@@ -42,7 +42,7 @@ const SimpleSwapPage = () => {
   };
 
   return (
-    <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md">
+    <div className="w-[80%] mx-auto p-4 bg-[#444] drop-shadow-lg rounded-md">
       
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">

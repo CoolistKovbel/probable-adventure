@@ -9,6 +9,7 @@ import nftContract from "../lib/abis/nft.json";
 import { toast } from "react-toastify";
 
 const MintPage = () => {
+
   const handleNftMint = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -69,7 +70,8 @@ const MintPage = () => {
 
 
   return (
-    <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md h-full md:h-[700px] flex flex-col justify-around">
+    <div className="w-[80%] mx-auto p-4 bg-[#444] drop-shadow-lg rounded-md h-full md:h-[700px] flex flex-col justify-around">
+
       <header className="w-full mb-2">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-5xl font-bold">Mint Now</h2>
@@ -90,6 +92,7 @@ const MintPage = () => {
       </header>
 
       <div className="flex items-center flex-col md:flex-row justify-between w-full">
+
         <div className="w-[300px] h-[300px] relative mx-auto mb-2">
           <Image
             src="/photune-coll.png"
@@ -136,6 +139,7 @@ const MintPage = () => {
             </button>
           </form>
         </div>
+
       </div>
     </div>
   );

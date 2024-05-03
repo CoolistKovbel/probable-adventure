@@ -6,7 +6,8 @@ import nftContract from "./abis/nft.json";
 import { toast } from "react-toastify";
 
 // nft token contract
-export const nftTokenAddress = "0x8652D8138Ec8f66F5C7EB831A1146bA4C4C25C78";
+// export const nftTokenAddress = "0x8652D8138Ec8f66F5C7EB831A1146bA4C4C25C78"; //test
+export const nftTokenAddress = "0xBB1dfF8cb40cBCf395A7e42Fc4A9BCE663D520CB"; //mainnet
 // erc token contract
 export const NeuronClumpTokenAddress =
   "0xDd332Aa25D185CcD09A25db1e312e991879062cb";

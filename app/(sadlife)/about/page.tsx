@@ -8,7 +8,7 @@ const Page = () => {
         <h1 className="text-2xl font-bold">About PhotuneLightway</h1>
       </header>
 
-      <div className="p-4 flex flex-col gap-4">
+      <div className="p-10 flex flex-col gap-4 bg-[#222] ">
 
         <p>
           Enter upon a interesting moment to capture. Where you get to be in
