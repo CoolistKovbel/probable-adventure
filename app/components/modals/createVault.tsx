@@ -1,29 +1,24 @@
 "use client";
 
 import { useModal } from "@/app/hooks/use-modal-store";
-import { addTokenToVault } from "@/app/lib/web3";
-import { ethers } from "ethers";
+import { addTokenToVault, createVault, crv } from "@/app/lib/web3";
 
-const AddTokenToVault = () => {
+const CreateVault = () => {
   const { isOpen, onClose, type, signature } = useModal();
 
   const urlParts = window.location.href.split("/");
   const desiredUrl = "/" + urlParts.slice(3).join("/");
 
-  const isModalOpen = isOpen && type === "CreaateTokenVaultTransfer";
+  const isModalOpen = isOpen && type === "CreateVault";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     formData.append("sessoinUrl", desiredUrl);
-    const amount = formData.get("tokenAmount") as string;
 
     try {
-
-      const gg = await addTokenToVault(signature, amount);
-
-      console.log("web,", gg);
+      await crv(formData);
 
       onClose();
     } catch (error) {
@@ -45,23 +40,49 @@ const AddTokenToVault = () => {
       <div className="bg-[#222] rounded-md p-4 w-[300px] md:w-[600px] overflow-auto h-[50%]">
         <div className="w-full h-full text-white flex justify-between flex-col relative">
           <h2 className="text-2xl md:text-4xl text-center font-bold">
-            Add Token
+            Create Vault
           </h2>
 
           <form
             onSubmit={handleSubmit}
             className="flex flex-col items-center justify-center bg-gray-900 p-6 rounded-lg shadow-lg "
           >
-            <label htmlFor="tokenAmount" className="text-white text-lg mb-2">
-              Amount
+            <label htmlFor="vaultName" className="text-white text-lg mb-2">
+              name
+            </label>
+            <input
+              type="string"
+              className="w-full bg-gray-800 text-white rounded-md py-2 px-4 mb-4 focus:outline-none focus:ring focus:border-blue-300"
+              placeholder="Enter vault name"
+              name="vaultName"
+              id="vaultName"
+            />
+
+            <label
+              htmlFor="vaultMultiplier"
+              className="text-white text-lg mb-2"
+            >
+              multiplier
             </label>
             <input
               type="number"
               className="w-full bg-gray-800 text-white rounded-md py-2 px-4 mb-4 focus:outline-none focus:ring focus:border-blue-300"
               placeholder="Enter token amount"
-              name="tokenAmount"
-              id="tokenAmount"
+              name="vaultMultiplier"
+              id="vaultMultiplier"
             />
+
+            <label htmlFor="vaultType" className="text-white text-lg mb-2">
+              vault type
+            </label>
+            <select
+              name="vaultType"
+              id="vaultType"
+              className="w-full bg-gray-800 text-white rounded-md py-2 px-4 mb-4 focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="compound">compound</option>
+              <option value="auto-compound">auto-compound</option>
+            </select>
 
             <button
               type="submit"
@@ -94,4 +115,4 @@ const AddTokenToVault = () => {
   );
 };
 
-export default AddTokenToVault;
+export default CreateVault;

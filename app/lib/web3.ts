@@ -2,7 +2,8 @@ import { ethers } from "ethers";
 
 import token from "./abis/token.json";
 import engine from "./abis/engine.json";
-import nftContract from "./abis/nft.json"
+import nftContract from "./abis/nft.json";
+import { toast } from "react-toastify";
 
 // nft token contract
 export const nftTokenAddress = "0x8652D8138Ec8f66F5C7EB831A1146bA4C4C25C78";
@@ -11,7 +12,7 @@ export const NeuronClumpTokenAddress =
   "0xDd332Aa25D185CcD09A25db1e312e991879062cb";
 // smart contract
 export const PhotuneLightwayContract =
-  "0x1bD20D8641Ec3799CB5Da99969f80bd6C2B03264";
+  "0x98aAE939b000653429F0046542a6Bac2C7eF7217";
 
 export const getEthereumObject = () => {
   return typeof window !== "undefined" ? window.ethereum : null;
@@ -72,7 +73,7 @@ export const getBlockNum = async () => {
   }
 };
 
-export const getTotalAmountNFTOwn = async (user:string) => {
+export const getTotalAmountNFTOwn = async (user: string) => {
   try {
     if (typeof window !== "undefined" && window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -89,15 +90,12 @@ export const getTotalAmountNFTOwn = async (user:string) => {
 
       const res = await contractInstance.balanceOf(address);
 
-      console.log(res.toString(), "debal ")
-
-      return res.toString()
-
+      return res.toString();
     }
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const convertEthToNCT = async (ethToken: any) => {
   try {
@@ -116,53 +114,9 @@ export const convertEthToNCT = async (ethToken: any) => {
       gasLimit: 600000,
     });
 
-    console.log(res);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const viewVaults = async () => {
-  try {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // Get the signer
-    const signer = provider.getSigner();
-
-    const contractInstance = new ethers.Contract(
-      PhotuneLightwayContract,
-      engine.abi,
-      signer
-    );
-
-    let index = 0;
-    let vaults = [];
-
-    while (true) {
-      try {
-        const vault = await contractInstance.vaults(index);
-
-        console.log("the cujrrent index is ", index);
-
-        if (
-          vault.name === "" ||
-          vault.stakingToken === ethers.constants.AddressZero
-        ) {
-          break; // Exit the loop if the vault is empty or invalid
-        }
-
-        // Push the vault details into the vaults array
-        vaults.push(vault);
-
-        // Increment the index for the next iteration
-        index++;
-      } catch (error) {
-        // Exit the loop if an error occurs (likely due to an invalid index)
-        break;
-      }
-    }
-
-    console.log(vaults, "in web3");
-    return vaults;
+    toast(`De hash: ${res.hash}`);
+    await res.wait();
+    toast(`De completed hash: ${res.hash}`);
   } catch (error) {
     console.log(error);
   }
@@ -236,7 +190,75 @@ export const autoCompoud = async (vault: any) => {
 // Add token to compound
 export const addTokenToVault = async (vaultId: any, amount: any) => {
   try {
-    console.log("Adding token through web3. initilizing connection");
+    console.log("Adding token through web3. Initializing connection");
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+
+    // CONtractn main
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
+
+    // const amountInWei = ethers.utils.parseEther(amount.toString());
+    // wei to ether 
+    const amountInEther = ethers.utils.formatEther(amount.toString());
+
+
+    // Join vault
+    await contractInstance.joinVault(vaultId, amountInEther, {
+      gasLimit: 900000,
+    });
+
+
+
+
+  } catch (error) {
+    console.log(error);
+    return "Looser error";
+  }
+};
+
+// Add token to compound
+export const AddApproveToken = async (vaultId: any, amount: string) => {
+  try {
+    console.log("Adding token through web3. Initializing connection");
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+
+    // Contract token
+    const contractInstance = new ethers.Contract(
+      NeuronClumpTokenAddress,
+      token.abi,
+      signer
+    );
+
+    const amountInWei = ethers.utils.parseEther(amount.toString());
+    const amountInEther = ethers.utils.formatEther(amount.toString());
+
+    const gg = await contractInstance.approve(
+      PhotuneLightwayContract,
+      amountInEther
+    );
+
+    await gg.wait();
+
+    return gg;
+  } catch (error) {
+    console.log(error);
+    return "Looser error";
+  }
+};
+
+export const createVault = async (formData: FormData) => {
+  try {
+    const { vaultName, vaultMultiplier, vaultType } =
+      Object.fromEntries(formData);
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     // Get the signer
@@ -244,13 +266,18 @@ export const addTokenToVault = async (vaultId: any, amount: any) => {
 
     const contractInstance = new ethers.Contract(
       PhotuneLightwayContract,
-      engine.abi,
+      nftContract.abi,
       signer
     );
 
-    const res = await contractInstance.joinVault(vaultId, amount, {
-      gasLimit: 600000,
-    });
+    await contractInstance.createVault(
+      vaultName as string,
+      Number(vaultMultiplier),
+      vaultType as string,
+      {
+        gasLimit: 600000,
+      }
+    );
   } catch (error) {
     console.log(error);
   }
@@ -276,10 +303,87 @@ export const addTokenToVault = async (vaultId: any, amount: any) => {
 
 // update token smart contract
 
-// add new vault
-
 //=========
 
 // mint nft
 
 // create lp
+
+// ===========
+// Create vault \
+export const crv = async (formData: FormData) => {
+  const { vaultName, vaultMultiplier, vaultType } =
+    Object.fromEntries(formData);
+
+  try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
+
+    await contractInstance.createVault(
+      vaultName.toString(),
+      Number(vaultMultiplier),
+      vaultType.toString(),
+      {
+        gasLimit: 600000,
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+// edit-update-token }{ =} vault
+//
+
+// Get all vaults \
+export const viewVaults = async () => {
+  try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
+
+    let index = 0;
+    let vaults = [];
+
+    while (true) {
+      try {
+        const vault = await contractInstance.vaults(index);
+
+        console.log("the cujrrent index is ", index);
+
+        if (
+          vault.name === "" ||
+          vault.stakingToken === ethers.constants.AddressZero
+        ) {
+          break; // Exit the loop if the vault is empty or invalid
+        }
+
+        // Push the vault details into the vaults array
+        vaults.push(vault);
+
+        // Increment the index for the next iteration
+        index++;
+      } catch (error) {
+        // Exit the loop if an error occurs (likely due to an invalid index)
+        break;
+      }
+    }
+
+    console.log(vaults, "in web3");
+    return vaults;
+  } catch (error) {
+    console.log(error);
+  }
+};

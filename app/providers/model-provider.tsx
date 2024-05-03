@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import AddTokenToVault from "../components/modals/addTokenToValt";
+import CreateVault from "../components/modals/createVault";
 
 
 export const ModalProvider = () => {
@@ -18,6 +19,7 @@ export const ModalProvider = () => {
   return (
     <>
       <AddTokenToVault />
+      <CreateVault />
     </>
   );
 };

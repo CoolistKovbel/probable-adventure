@@ -12,23 +12,33 @@ const SimpleSwapPage = () => {
 
   // Function to handle ETH amount change
   const handleETHChange = (e: any) => {
+
     const amount = parseFloat(e.target.value);
     setETHAmount(amount);
+
     // Calculate the equivalent NCT amount based on the exchange rate
     const calculatedNCTAmount =
       Number(ethers.utils.parseEther(amount.toString())) * tokenPerEth;
+
     setNCTAmount(ethers.utils.formatEther(calculatedNCTAmount.toString()));
+
   };
 
   const handleSwap = async (e: any) => {
     e.preventDefault();
+
     try {
       console.log("swapping tokens");
 
-      const gg = await convertEthToNCT(ETHAmount);
+      await convertEthToNCT(ETHAmount);
+
+      
+
+
     } catch (error) {
       console.log(error);
     }
+
   };
 
   return (
