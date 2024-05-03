@@ -10,7 +10,7 @@ const WaitListForm = () => {
         name="content"
         id="content"
       />
-       <button className="text-[13px] bg-neutral-950 p-2 hover:text-yellow-500 mt-1 rounded-lg">Subscribe</button>
+       <button className="text-[13px] bg-[#222] p-2 hover:text-yellow-500 mt-1 rounded-lg float-right mt-4">Subscribe</button>
     </form>
   );
 };

@@ -91,8 +91,9 @@ const Page = () => {
           Mint NFT collection
         </h2>
 
-        <div className="flex items-center w-[80%] mx-auto flex-col md:flex-row gap-4 mb-10 bg-[#111] p-10 rounded-lg justify-center gap-10 drop-shadow-lg">
-          <div className="w-[300px] h-[300px] relative ">
+        <div className="flex items-center w-full md:w-[80%] mx-auto flex-col md:flex-row gap-4 mb-10 bg-[#111] p-10 rounded-lg justify-center gap-10 drop-shadow-lg">
+
+          <div className="w-[250px] md:w-[300px] md:h-[300px] h-[250px] relative ">
             <Image
               src="/photune.png"
               alt="myster nft minting"
@@ -101,11 +102,11 @@ const Page = () => {
             />
           </div>
 
-          <div className="w-[50%]">
+          <div className="w-full md:w-[50%]">
             <h2 className="text-2xl md:text-4xl capitalize mb-4 text-center font-bold">
               Mint out of 222
             </h2>
-            <p className="text-sm">
+            <p className="text-sm text-center">
               Capture one of the 222 moments that can be use to unlocked extra
               features within the site. If you hold onto them you will be able
               to use it in other sites.

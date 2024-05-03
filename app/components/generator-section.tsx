@@ -210,6 +210,8 @@ const GeneratorSection = () => {
                     </button>
                   </div>
                 </div>
+
+                
               </div>
             ))}
 

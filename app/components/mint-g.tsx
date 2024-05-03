@@ -7,6 +7,7 @@ import nftContract from "../lib/abis/nft.json";
 import { toast } from "react-toastify";
 
 const MintG = () => {
+
   const handleNftMint = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -69,11 +70,11 @@ const MintG = () => {
       <input
         type="number"
         placeholder="enter amount"
-        className="p-2 bg-[#222] font-bold "
+        className="p-2 bg-[#222] font-bold rounded-lg w-[90%]"
         id="nftAmount"
         name="nftAmount"
       />
-      <button className="p-2 rounded-lg bg-[#222] hover:bg-red-500">
+      <button className="p-2 rounded-lg bg-[#222] w-full hover:bg-red-500">
         mint
       </button>
     </form>

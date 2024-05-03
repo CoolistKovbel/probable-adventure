@@ -238,12 +238,12 @@ export const AddApproveToken = async (vaultId: any, amount: string) => {
       signer
     );
 
-    const amountInWei = ethers.utils.parseEther(amount.toString());
-    const amountInEther = ethers.utils.formatEther(amount.toString());
+
+
 
     const gg = await contractInstance.approve(
       PhotuneLightwayContract,
-      amountInEther
+      ethers.utils.formatEther(amount.toString())
     );
 
     await gg.wait();
