@@ -141,6 +141,7 @@ const MintPage = () => {
         </div>
 
       </div>
+      
     </div>
   );
 };

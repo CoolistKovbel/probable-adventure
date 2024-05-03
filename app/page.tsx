@@ -8,14 +8,15 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full p-20  bg-black   bg-grid-black/[0.2] relative flex items-center justify-center flex-col">
+    <main className="min-h-screen w-full p-10  bg-black   bg-grid-black/[0.2] relative flex items-center justify-center flex-col">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <MainHeader />
 
       <section className="flex items-center justify-between flex-col mt-10 gap-5">
+
         <header className="w-full md:w-[80%] bg-[#111] p-4 rounded-lg drop-shadow-lg flex items-center justify-around mx-auto md:flex-row flex-col gap-5">
           <div className="w-full md:w-[40%] text-center">
-            <h2 className="text-2xl md:text-4xl font-bold mb-5 capitalize">
+            <h2 className="text-3xl md:text-4xl font-bold mb-5 capitalize">
               Hold the light and paint a new way
             </h2>
 

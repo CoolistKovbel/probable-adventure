@@ -66,6 +66,7 @@ const SimpleSwapPage = () => {
         className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4"
         onSubmit={handleSwap}
       >
+
         <label htmlFor="ETH" className="flex flex-col gap-2">
           <span className="bg-[#111] p-1 inline-block rounded-lg">
             Ethereum
@@ -103,6 +104,7 @@ const SimpleSwapPage = () => {
         <button className="p-2 bg-[#999] rounded-lg font-bold uppercase hover:bg-[#444]">
           swap
         </button>
+        
       </form>
 
     </div>
