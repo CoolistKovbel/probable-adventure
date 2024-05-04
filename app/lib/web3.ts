@@ -19,8 +19,10 @@ export const NeuronClumpTokenAddress = "0x05F868A3F0d4b30d402b55E45895d527F5783D
 
 
 // smart contract
+// export const PhotuneLightwayContract =
+//   "0x98aAE939b000653429F0046542a6Bac2C7eF7217"; //main
 export const PhotuneLightwayContract =
-  "0x98aAE939b000653429F0046542a6Bac2C7eF7217";
+  "0xdc7BF796BE7261EA48C99ecB52f14700ae2dF718";
 
   
 
@@ -150,10 +152,15 @@ export const userVaultz = async () => {
     console.log(ethers.utils.formatEther(gg[0].toString()), "What is in here");
 
     return ethers.utils.formatEther(gg[0].toString());
+    
   } catch (error) {
     console.log(error);
   }
 };
+
+
+
+
 
 export const leaveVault = async (vaultId: any) => {
   try {
@@ -206,31 +213,27 @@ export const addTokenToVault = async (vaultId: any, amount: any) => {
     // Get the signer
     const signer = provider.getSigner();
 
-    // CONtractn main
+    // Contract main
     const contractInstance = new ethers.Contract(
       PhotuneLightwayContract,
       engine.abi,
       signer
     );
 
-    // const amountInWei = ethers.utils.parseEther(amount.toString());
-    // wei to ether 
-    const amountInEther = ethers.utils.formatEther(amount.toString());
-
+    // Convert amount to wei
+    const amountInWei = ethers.utils.parseEther(amount.toString());
 
     // Join vault
-    await contractInstance.joinVault(vaultId, amountInEther, {
+    await contractInstance.joinVault(vaultId, amountInWei, {
       gasLimit: 900000,
     });
 
-
-
-
   } catch (error) {
     console.log(error);
-    return "Looser error";
+    return "Error occurred while adding token to vault.";
   }
 };
+
 
 // Add token to compound
 export const AddApproveToken = async (vaultId: any, amount: string) => {
@@ -248,12 +251,9 @@ export const AddApproveToken = async (vaultId: any, amount: string) => {
       signer
     );
 
-
-
-
     const gg = await contractInstance.approve(
       PhotuneLightwayContract,
-      ethers.utils.formatEther(amount.toString())
+      ethers.utils.parseEther(amount.toString())
     );
 
     await gg.wait();

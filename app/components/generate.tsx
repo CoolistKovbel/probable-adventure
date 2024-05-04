@@ -8,45 +8,20 @@ import { ethers } from "ethers";
 
 const Genereate = () => {
   const [deVaults, setDeVaults] = useState<any>([]);
-  const [userStake, setUserStake] = useState("")
+  const [userStake, setUserStake] = useState("");
   const { onOpen } = useModal();
 
   // Grab all the vaults
 
-  const gen = [
-    {
-      type: "manuel-compound",
-      apy: 100,
-      recentProfit: 0,
-      totalStaked: 345678,
-      token: "NCT",
-    },
-    {
-      type: "auto-compound",
-      apy: 20,
-      recentProfit: 0,
-      totalStaked: 345678,
-      token: "NCT",
-    },
-    {
-      type: "NFT auto-compound",
-      apy: 30,
-      recentProfit: 0,
-      totalStaked: 12,
-      token: "PLCT",
-    },
-  ];
-
   useEffect(() => {
     const int = async () => {
       const vaults = await viewVaults();
-      const userVault = await userVaultz()
-
+      const userVault = await userVaultz();
 
       console.log(vaults, "in de clie4nt");
-      console.log("userVaults", userVault)
+      console.log("userVaults", userVault);
 
-      setUserStake(userVault as string)
+      setUserStake(userVault as string);
       setDeVaults(vaults);
     };
 
@@ -68,31 +43,29 @@ const Genereate = () => {
     }
   };
 
-  const handleVaultAddToken = async (e:any, inde:any) => {
+  const handleVaultAddToken = async (e: any, inde: any) => {
     e.preventDefault();
     try {
       console.log("Soryy adding tokens to vault", inde);
 
-      onOpen("CreaateTokenVaultTransfer",  inde);
+      onOpen("CreaateTokenVaultTransfer", inde);
     } catch (error) {
       console.log("error");
     }
   };
 
-  const handleVaultRemoveToken = async (e: any, vaultId:any) => {
+  const handleVaultRemoveToken = async (e: any, vaultId: any) => {
     e.preventDefault();
     try {
       console.log("Soryy adding tokens to vault");
 
-      await leaveVault(vaultId)
-
-
+      await leaveVault(vaultId);
     } catch (error) {
       console.log("error");
     }
   };
 
-  const handleAutoCompound = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAutoCompound = async (e: any, vaultId: any) => {
     e.preventDefault();
     try {
       console.log("Inititizing auto compound");
@@ -132,7 +105,9 @@ const Genereate = () => {
                 <h2 className="text-2xl font-bold capitalize">
                   {item.vaultType}
                 </h2>
-                <p className="text-sm">Total staked: {ethers.utils.formatUnits(item[6], 'ether')} </p>
+                <p className="text-sm">
+                  Total staked: {ethers.utils.formatUnits(item[6], "ether")}{" "}
+                </p>
               </header>
 
               <p className="text-2xl font-bold text-center">
@@ -147,7 +122,7 @@ const Genereate = () => {
 
                 <button
                   className="bg-[#333] p-2 drop-shadow-lg w-full text-center hover:bg-[#222] rounded-md"
-                  onClick={(e:any) => claimTokens(e, index)}
+                  onClick={(e: any) => claimTokens(e, index)}
                 >
                   claim
                 </button>
@@ -158,20 +133,34 @@ const Genereate = () => {
                 <p className="mb-2">Staked: {userStake}</p>
 
                 <div className="w-full flex items-center justify-between">
+
                   <button
                     className="bg-[#333] p-2 drop-shadow-lg  text-center hover:bg-[#222] rounded-md"
-                    onClick={(e:any) => handleVaultAddToken(e, index)}
+                    onClick={(e: any) => handleVaultAddToken(e, index)}
                   >
                     add
                   </button>
+
+                  {item.vaultType === "Auto-Compound" && (
+                    <button
+                      className="bg-[#333] p-2 drop-shadow-lg  text-center hover:bg-[#222] rounded-md"
+                      onClick={(e: any) => handleAutoCompound(e, index)}
+                    >
+                      auto compound
+                    </button>
+                  )}
+
                   <button
                     className="bg-[#333] p-2 drop-shadow-lg  text-center hover:bg-[#222] rounded-md"
-                    onClick={(e:any) => handleVaultRemoveToken(e, index)}
+                    onClick={(e: any) => handleVaultRemoveToken(e, index)}
                   >
                     remove
                   </button>
+
                 </div>
               </div>
+
+              
             </div>
           ))}
       </div>

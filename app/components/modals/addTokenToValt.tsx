@@ -17,11 +17,11 @@ const AddTokenToVault = () => {
 
     const formData = new FormData(e.currentTarget);
     formData.append("sessoinUrl", desiredUrl);
-    const amount = formData.get("tokenAmount") as string;
+    const amount = formData.get("tokenAmount")
 
     try {
 
-      const gg = await addTokenToVault(signature, amount);
+      const gg = await addTokenToVault(signature, Number(amount));
 
       console.log("web,", gg);
 

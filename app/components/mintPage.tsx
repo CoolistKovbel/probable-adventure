@@ -70,10 +70,11 @@ const MintPage = () => {
 
 
   return (
-    <div className="w-[80%] mx-auto p-4 bg-[#444] drop-shadow-lg rounded-md h-full md:h-[700px] flex flex-col justify-around">
+    <div className="w-full md:w-[80%] mx-auto bg-[#444] drop-shadow-lg rounded-md h-full md:h-[700px] flex flex-col justify-around">
 
       <header className="w-full mb-2">
-        <div className="flex items-center justify-between w-full">
+
+        <div className="flex items-center justify-between w-full mb-4  p-5">
           <h2 className="text-5xl font-bold">Mint Now</h2>
           <Link
             href="/mint"
@@ -82,7 +83,8 @@ const MintPage = () => {
             <i>📍</i>
           </Link>
         </div>
-        <p className="text-gray-300 p-2">
+
+        <p className="text-gray-300 p-4 bg-[#222]">
           Over 222 unique tokens within the collection allow you to be able to
           setup for minting to be able to earn more token. Get your first NFT
           collectors item where you will be able to not only be able to use for
@@ -102,7 +104,7 @@ const MintPage = () => {
           />
         </div>
 
-        <div className="p-4 w-full md:w-[50%]">
+        <div className="p-4 w-full md:w-[50%] bg-[#222] rounded-lg drop-shadow-lg">
           <header className="mb-2">
             <h2 className="text-4xl font-bold mb-2">De First Collection</h2>
             <p className="text-md mb-4">
