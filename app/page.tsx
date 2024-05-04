@@ -51,7 +51,7 @@ export default function Home() {
 
         <Genereate />
 
-      </section>
+      </section> 
 
       <MainFooter />
     </main>
