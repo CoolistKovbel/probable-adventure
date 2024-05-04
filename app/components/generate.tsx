@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { leaveVault, userVaultz, viewVaults } from "../lib/web3";
+import { grabStakeVault, leaveVault } from "../lib/web3";
 import { useModal } from "../hooks/use-modal-store";
 import { ethers } from "ethers";
 
@@ -14,19 +14,15 @@ const Genereate = () => {
   // Grab all the vaults
   useEffect(() => {
     const int = async () => {
-      const vaults = await viewVaults();
-      const userVault = await userVaultz();
+      const vaults = await grabStakeVault();
 
       console.log(vaults, "in de clie4nt");
-      console.log("userVaults", userVault);
 
-      setUserStake(userVault as string);
       setDeVaults(vaults);
     };
 
     int();
   }, []);
-
 
   const claimTokens = async (e: any, vaultId: any) => {
     e.preventDefault();
@@ -68,11 +64,10 @@ const Genereate = () => {
     }
   };
 
-  const swutch = false
+  const swutch = false;
 
   return (
     <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md">
-      
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-4xl font-bold mb-2">Particle Becon</h2>
@@ -83,6 +78,7 @@ const Genereate = () => {
             <i>📍</i>
           </Link>
         </div>
+
         <p className="text-gray-300 p-2">
           Use your tokens to generate more. By using your NFT you will be able
           to generate tokens a little faster than our current Particle Becons.
@@ -98,22 +94,20 @@ const Genereate = () => {
               key={crypto.randomUUID()}
               className="bg-[#111] mb-3 drop-shadow-lg rounded-md"
             >
-
-
               <header className="mb-2 p-4">
                 <h2 className="text-2xl font-bold capitalize">
-                  {item.vaultType}
+                  {item.type.toString()}
                 </h2>
                 <p className="text-sm">
-                  Total staked: {ethers.utils.formatUnits(item[6], "ether")}{" "}
+                  Total staked: {item.totalAmount.toString()}
                 </p>
               </header>
 
               <p className="text-2xl font-bold text-center">
-                APY: <span>{item[1].toString()}%</span>
+                Multiplier: <span>{item.multiplier.toString()}%</span>
               </p>
 
-            {/* c;a */}
+              {/* c;a */}
               <div className="p-4">
                 <p className="text-sm bg-[#222] p-3 text-white bg-[#444] mb-3">
                   Earned:
@@ -122,22 +116,20 @@ const Genereate = () => {
 
                 <button
                   className="bg-[#333] p-2 drop-shadow-lg w-full text-center hover:bg-[#222] rounded-md"
-                  onClick={(e: any) => claimTokens(e, index)}
+                  onClick={(e: any) => claimTokens(e, index + 1)}
                 >
                   claim
                 </button>
               </div>
-
 
               {/* User */}
               <div className="p-4 bg-[#000]">
                 <p className="mb-2">Staked: {userStake}</p>
 
                 <div className="w-full flex items-center justify-between">
-
                   <button
                     className="bg-[#333] p-2 drop-shadow-lg  text-center hover:bg-[#222] rounded-md"
-                    onClick={(e: any) => handleVaultAddToken(e, index)}
+                    onClick={(e: any) => handleVaultAddToken(e, index + 1)}
                   >
                     add
                   </button>
@@ -145,7 +137,7 @@ const Genereate = () => {
                   {item.vaultType === "Auto-Compound" && (
                     <button
                       className="bg-[#333] p-2 drop-shadow-lg  text-center hover:bg-[#222] rounded-md"
-                      onClick={(e: any) => handleAutoCompound(e, index)}
+                      onClick={(e: any) => handleAutoCompound(e, index + 1)}
                     >
                       auto compound
                     </button>
@@ -153,14 +145,12 @@ const Genereate = () => {
 
                   <button
                     className="bg-[#333] p-2 drop-shadow-lg  text-center hover:bg-[#222] rounded-md"
-                    onClick={(e: any) => handleVaultRemoveToken(e, index)}
+                    onClick={(e: any) => handleVaultRemoveToken(e, index + 1)}
                   >
                     remove
                   </button>
-
                 </div>
               </div>
-
             </div>
           ))}
       </div>

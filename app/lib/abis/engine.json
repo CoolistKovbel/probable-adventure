@@ -6,24 +6,143 @@
             "type": "constructor"
         },
         {
-            "inputs": [],
-            "name": "CollectorItem",
-            "outputs": [
+            "anonymous": false,
+            "inputs": [
                 {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "vaultId",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
                     "internalType": "address",
-                    "name": "",
+                    "name": "user",
                     "type": "address"
                 }
             ],
-            "stateMutability": "view",
-            "type": "function"
+            "name": "NFTTokenDeposited",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "vaultId",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "user",
+                    "type": "address"
+                }
+            ],
+            "name": "NFTTokenWithdrawn",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "vaultId",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "user",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "RewardsClaimed",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "vaultId",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "RewardsCompounded",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "vaultId",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "user",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "StakingTokenDeposited",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "vaultId",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "user",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "StakingTokenWithdrawn",
+            "type": "event"
         },
         {
             "inputs": [],
-            "name": "RewardToken",
+            "name": "NFTToken",
             "outputs": [
                 {
-                    "internalType": "address",
+                    "internalType": "contract IERC721",
                     "name": "",
                     "type": "address"
                 }
@@ -36,7 +155,7 @@
             "name": "StakingToken",
             "outputs": [
                 {
-                    "internalType": "address",
+                    "internalType": "contract IERC20",
                     "name": "",
                     "type": "address"
                 }
@@ -59,7 +178,7 @@
         },
         {
             "inputs": [],
-            "name": "baseAPY",
+            "name": "baseMultiplier",
             "outputs": [
                 {
                     "internalType": "uint256",
@@ -74,7 +193,20 @@
             "inputs": [
                 {
                     "internalType": "uint256",
-                    "name": "_vaultIndex",
+                    "name": "vaultId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "claimRewards",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "vaultId",
                     "type": "uint256"
                 }
             ],
@@ -87,7 +219,7 @@
             "inputs": [
                 {
                     "internalType": "string",
-                    "name": "_name",
+                    "name": "_vaultName",
                     "type": "string"
                 },
                 {
@@ -108,12 +240,37 @@
         },
         {
             "inputs": [],
-            "name": "ethUsdPriceFeed",
+            "name": "getAllVaults",
             "outputs": [
                 {
-                    "internalType": "address",
+                    "internalType": "string[]",
                     "name": "",
-                    "type": "address"
+                    "type": "string[]"
+                },
+                {
+                    "internalType": "address[]",
+                    "name": "",
+                    "type": "address[]"
+                },
+                {
+                    "internalType": "uint256[]",
+                    "name": "",
+                    "type": "uint256[]"
+                },
+                {
+                    "internalType": "string[]",
+                    "name": "",
+                    "type": "string[]"
+                },
+                {
+                    "internalType": "uint256[]",
+                    "name": "",
+                    "type": "uint256[]"
+                },
+                {
+                    "internalType": "uint256[]",
+                    "name": "",
+                    "type": "uint256[]"
                 }
             ],
             "stateMutability": "view",
@@ -123,12 +280,12 @@
             "inputs": [
                 {
                     "internalType": "uint256",
-                    "name": "_vaultIndex",
+                    "name": "vaultId",
                     "type": "uint256"
                 },
                 {
                     "internalType": "uint256",
-                    "name": "_amount",
+                    "name": "amount",
                     "type": "uint256"
                 }
             ],
@@ -138,45 +295,29 @@
             "type": "function"
         },
         {
-            "inputs": [
+            "inputs": [],
+            "name": "nextVaultId",
+            "outputs": [
                 {
                     "internalType": "uint256",
-                    "name": "_vaultIndex",
+                    "name": "",
                     "type": "uint256"
                 }
             ],
-            "name": "leaveVaultAndClaimRewards",
-            "outputs": [],
-            "stateMutability": "nonpayable",
+            "stateMutability": "view",
             "type": "function"
         },
         {
             "inputs": [
                 {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                },
-                {
                     "internalType": "uint256",
-                    "name": "",
+                    "name": "_amount",
                     "type": "uint256"
                 }
             ],
-            "name": "userVaults",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "amountStaked",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "totalRewardEarned",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
+            "name": "updateMultiplier",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         },
         {
@@ -191,22 +332,17 @@
             "outputs": [
                 {
                     "internalType": "string",
-                    "name": "name",
+                    "name": "vaultName",
                     "type": "string"
                 },
                 {
-                    "internalType": "uint256",
-                    "name": "apy",
-                    "type": "uint256"
+                    "internalType": "address",
+                    "name": "vaultOwner",
+                    "type": "address"
                 },
                 {
                     "internalType": "uint256",
                     "name": "multiplier",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "vaultStart",
                     "type": "uint256"
                 },
                 {
@@ -215,17 +351,35 @@
                     "type": "string"
                 },
                 {
-                    "internalType": "address",
-                    "name": "stakingToken",
-                    "type": "address"
+                    "internalType": "uint256",
+                    "name": "totalAmountStaked",
+                    "type": "uint256"
                 },
                 {
                     "internalType": "uint256",
-                    "name": "totalAmountStaked",
+                    "name": "creationTimestamp",
                     "type": "uint256"
                 }
             ],
             "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "vaultId",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "withdrawStakingToken",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         }
     ]

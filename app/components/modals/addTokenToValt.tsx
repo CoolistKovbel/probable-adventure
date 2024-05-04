@@ -1,11 +1,14 @@
 "use client";
 
 import { useModal } from "@/app/hooks/use-modal-store";
-import { addTokenToVault } from "@/app/lib/web3";
+import { addTokenToVault, approveTokenTransfer } from "@/app/lib/web3";
 import { ethers } from "ethers";
+import { useState } from "react";
 
 const AddTokenToVault = () => {
   const { isOpen, onClose, type, signature } = useModal();
+  const [isApproved, setIsApproved] = useState<any>(false);
+  const [isAmount, setIsAmount] = useState<number>(0);
 
   const urlParts = window.location.href.split("/");
   const desiredUrl = "/" + urlParts.slice(3).join("/");
@@ -22,12 +25,19 @@ const AddTokenToVault = () => {
     try {
       const gg = await addTokenToVault(signature, amount);
 
-     console.log("Adding approving")
-
       onClose();
     } catch (error) {
       console.error("Error:", error);
       // TODO: Handle error
+    }
+  };
+
+  const handleApprove = async () => {
+    try {
+     const xx =  await approveTokenTransfer(isAmount);
+     setIsApproved(true)
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -41,9 +51,7 @@ const AddTokenToVault = () => {
         isModalOpen ? "" : "hidden"
       }`}
     >
-
       <div className="bg-[#222] rounded-md p-4 w-[300px] md:w-[600px] overflow-auto h-[50%]">
-
         <div className="w-full h-full text-white flex justify-between flex-col relative">
           <h2 className="text-2xl md:text-4xl text-center font-bold">
             Add Token
@@ -62,14 +70,20 @@ const AddTokenToVault = () => {
               placeholder="Enter token amount"
               name="tokenAmount"
               id="tokenAmount"
+              onChange={(e: any) => setIsAmount(e.target.value)}
             />
 
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white rounded-md py-3 px-6 font-semibold hover:bg-blue-600 transition duration-300 ease-in-out"
-            >
-              Submit
-            </button>
+            {isApproved ? (
+              <button
+                
+                type="submit"
+                className="w-full bg-blue-500 text-white rounded-md py-3 px-6 font-semibold hover:bg-blue-600 transition duration-300 ease-in-out"
+              >
+                Submit
+              </button>
+            ) : (
+              <button type="button" onClick={handleApprove}>approve</button>
+            )}
           </form>
 
           {/* close button */}
@@ -89,8 +103,8 @@ const AddTokenToVault = () => {
               />
             </svg>
           </button>
+          
         </div>
-
       </div>
     </div>
   );

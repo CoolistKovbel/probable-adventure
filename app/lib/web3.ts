@@ -17,11 +17,11 @@ export const nftTokenAddress = "0xBB1dfF8cb40cBCf395A7e42Fc4A9BCE663D520CB"; //m
 export const NeuronClumpTokenAddress =
   "0x05F868A3F0d4b30d402b55E45895d527F5783DA3"; // mainnet
 
-// smart contract
+// smart contract vault
 // export const PhotuneLightwayContract =
 //   "0x98aAE939b000653429F0046542a6Bac2C7eF7217"; //main
 export const PhotuneLightwayContract =
-  "0xdc7BF796BE7261EA48C99ecB52f14700ae2dF718";
+  "0x5990A885256B113AeA89105A04329317d672B3F6";
 
 export const getEthereumObject = () => {
   return typeof window !== "undefined" ? window.ethereum : null;
@@ -131,28 +131,6 @@ export const convertEthToNCT = async (ethToken: any) => {
   }
 };
 
-export const userVaultz = async () => {
-  try {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // Get the signer
-    const signer = provider.getSigner();
-    const signerAddress = await signer.getAddress();
-
-    const contractInstance = new ethers.Contract(
-      PhotuneLightwayContract,
-      engine.abi,
-      signer
-    );
-
-    const gg = await contractInstance.userVaults(signerAddress, 0);
-
-    console.log(ethers.utils.formatEther(gg[0].toString()), "What is in here");
-
-    return ethers.utils.formatEther(gg[0].toString());
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const leaveVault = async (vaultId: any) => {
   try {
@@ -199,6 +177,9 @@ export const autoCompoud = async (vault: any) => {
 // Add token to compound
 export const addTokenToVault = async (vaultId: any, amount: any) => {
   try {
+    const amountInWei = ethers.utils.parseEther(amount.toString());
+
+
     console.log("Adding token through web3. Initializing connection");
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -212,20 +193,12 @@ export const addTokenToVault = async (vaultId: any, amount: any) => {
       signer
     );
 
-    // Convert amount to wei
-    // const amountInWei = ethers.utils.parseEther(amount.toString());
-    const amountInWei = ethers.utils.parseEther(amount.toString());
-
-   const gg =  await AddApproveToken(vaultId, amountInWei);
-
     // Join vault
-    const bv = await contractInstance.joinVault(vaultId, amount, {
-      gasLimit: 900000,
+    const bv = await contractInstance.joinVault(vaultId, amountInWei, {
+      gasLimit: 600000,
     });
 
-    console.log(gg, "DE ")
-    console.log(bv, "vault")
-
+    console.log(bv, "vault");
   } catch (error) {
     console.log(error);
     return "Error occurred while adding token to vault.";
@@ -290,31 +263,78 @@ export const createVault = async (formData: FormData) => {
   }
 };
 
-// add nft token to auto compound
+// ============
 
-// remove token from auto compound
+// Approve function
+export const approveTokenTransfer = async (amount: any) => {
+  try {
+    console.log("Approving token transfer");
 
-// ======
-// Remove token from auto comppound
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
 
-// remove token from compound
-//=========
+    const contractInstance = new ethers.Contract(
+      NeuronClumpTokenAddress,
+      token.abi,
+      signer
+    );
 
-// withdrawl tokens
+    const gg = await contractInstance.approve(PhotuneLightwayContract, amount);
+    console.log(gg);
 
-// update apy for specfic vault
+    await gg.wait();
 
-// =======
+   return gg
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// Add token to smart contract
+// Grab vault
+export const grabStakeVault = async () => {
+  try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
 
-// update token smart contract
+    const contractInstance = new ethers.Contract(
+      PhotuneLightwayContract,
+      engine.abi,
+      signer
+    );
 
-//=========
+    const vaultData = await contractInstance.getAllVaults();
 
-// mint nft
+    // Assuming all arrays have the same length
+    const numVaults = vaultData[0].length;
+    const vaults = [];
 
-// create lp
+    for (let i = 0; i < numVaults; i++) {
+      const vault = {
+        name: vaultData[0][i],
+        owner: vaultData[1][i],
+        multiplier: vaultData[2][i],
+        type: vaultData[3][i],
+        totalAmount: vaultData[4][i],
+        creationTimestamp: vaultData[5][i]
+      };
+
+      vaults.push(vault);
+    }
+
+    console.log("All Vaults:", vaults);
+
+    return vaults;
+    
+  } catch (error) {
+    console.log("Error:", error);
+    return [];
+  }
+};
+
+
+
 
 // ===========
 // Create vault \
