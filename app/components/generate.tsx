@@ -12,7 +12,6 @@ const Genereate = () => {
   const { onOpen } = useModal();
 
   // Grab all the vaults
-
   useEffect(() => {
     const int = async () => {
       const vaults = await viewVaults();
@@ -28,11 +27,6 @@ const Genereate = () => {
     int();
   }, []);
 
-  // console.log("deVaults", deVaults[0])
-  // console.log("deVaults apy", deVaults[0][1].toString())
-  // console.log("deVaults multiplier", deVaults[0][2].toString())
-  // console.log("deVaults date created", deVaults[0][3].toString())
-  // console.log("deVaults total amnount staked ", deVaults[0][6].toString())
 
   const claimTokens = async (e: any, vaultId: any) => {
     e.preventDefault();
@@ -76,6 +70,7 @@ const Genereate = () => {
 
   return (
     <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md">
+      
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-4xl font-bold mb-2">Particle Becon</h2>
@@ -101,6 +96,8 @@ const Genereate = () => {
               key={crypto.randomUUID()}
               className="bg-[#111] mb-3 drop-shadow-lg rounded-md"
             >
+
+
               <header className="mb-2 p-4">
                 <h2 className="text-2xl font-bold capitalize">
                   {item.vaultType}
@@ -114,6 +111,7 @@ const Genereate = () => {
                 APY: <span>{item[1].toString()}%</span>
               </p>
 
+            {/* c;a */}
               <div className="p-4">
                 <p className="text-sm bg-[#222] p-3 text-white bg-[#444] mb-3">
                   Earned:
@@ -127,6 +125,7 @@ const Genereate = () => {
                   claim
                 </button>
               </div>
+
 
               {/* User */}
               <div className="p-4 bg-[#000]">
@@ -160,7 +159,6 @@ const Genereate = () => {
                 </div>
               </div>
 
-              
             </div>
           ))}
       </div>

@@ -17,13 +17,12 @@ const AddTokenToVault = () => {
 
     const formData = new FormData(e.currentTarget);
     formData.append("sessoinUrl", desiredUrl);
-    const amount = formData.get("tokenAmount")
+    const amount = formData.get("tokenAmount") as any;
 
     try {
+      const gg = await addTokenToVault(signature, amount);
 
-      const gg = await addTokenToVault(signature, Number(amount));
-
-      console.log("web,", gg);
+     console.log("Adding approving")
 
       onClose();
     } catch (error) {
@@ -42,7 +41,9 @@ const AddTokenToVault = () => {
         isModalOpen ? "" : "hidden"
       }`}
     >
+
       <div className="bg-[#222] rounded-md p-4 w-[300px] md:w-[600px] overflow-auto h-[50%]">
+
         <div className="w-full h-full text-white flex justify-between flex-col relative">
           <h2 className="text-2xl md:text-4xl text-center font-bold">
             Add Token
@@ -89,6 +90,7 @@ const AddTokenToVault = () => {
             </svg>
           </button>
         </div>
+
       </div>
     </div>
   );

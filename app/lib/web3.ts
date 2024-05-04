@@ -8,23 +8,20 @@ import { toast } from "react-toastify";
 // nft token contract
 // export const nftTokenAddress = "0x8652D8138Ec8f66F5C7EB831A1146bA4C4C25C78"; //test
 
-
 export const nftTokenAddress = "0xBB1dfF8cb40cBCf395A7e42Fc4A9BCE663D520CB"; //mainnet
 
 // erc token contract
 // export const NeuronClumpTokenAddress =
 //   "0xDd332Aa25D185CcD09A25db1e312e991879062cb"; // test
 
-export const NeuronClumpTokenAddress = "0x05F868A3F0d4b30d402b55E45895d527F5783DA3" // mainnet
-
+export const NeuronClumpTokenAddress =
+  "0x05F868A3F0d4b30d402b55E45895d527F5783DA3"; // mainnet
 
 // smart contract
 // export const PhotuneLightwayContract =
 //   "0x98aAE939b000653429F0046542a6Bac2C7eF7217"; //main
 export const PhotuneLightwayContract =
   "0xdc7BF796BE7261EA48C99ecB52f14700ae2dF718";
-
-  
 
 export const getEthereumObject = () => {
   return typeof window !== "undefined" ? window.ethereum : null;
@@ -152,15 +149,10 @@ export const userVaultz = async () => {
     console.log(ethers.utils.formatEther(gg[0].toString()), "What is in here");
 
     return ethers.utils.formatEther(gg[0].toString());
-    
   } catch (error) {
     console.log(error);
   }
 };
-
-
-
-
 
 export const leaveVault = async (vaultId: any) => {
   try {
@@ -221,12 +213,18 @@ export const addTokenToVault = async (vaultId: any, amount: any) => {
     );
 
     // Convert amount to wei
+    // const amountInWei = ethers.utils.parseEther(amount.toString());
     const amountInWei = ethers.utils.parseEther(amount.toString());
 
+   const gg =  await AddApproveToken(vaultId, amountInWei);
+
     // Join vault
-    await contractInstance.joinVault(vaultId, amountInWei, {
+    const bv = await contractInstance.joinVault(vaultId, amount, {
       gasLimit: 900000,
     });
+
+    console.log(gg, "DE ")
+    console.log(bv, "vault")
 
   } catch (error) {
     console.log(error);
@@ -234,9 +232,8 @@ export const addTokenToVault = async (vaultId: any, amount: any) => {
   }
 };
 
-
 // Add token to compound
-export const AddApproveToken = async (vaultId: any, amount: string) => {
+export const AddApproveToken = async (vaultId: any, amount: any) => {
   try {
     console.log("Adding token through web3. Initializing connection");
 
