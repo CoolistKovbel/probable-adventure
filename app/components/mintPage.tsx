@@ -93,7 +93,7 @@ const MintPage = () => {
         </p>
       </header>
 
-      <div className="flex items-center flex-col md:flex-row justify-between w-full">
+      <div className="flex items-center flex-col md:flex-row justify-around w-full">
 
         <div className="w-[300px] h-[300px] relative mx-auto mb-2">
           <Image

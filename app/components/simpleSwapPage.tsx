@@ -12,7 +12,6 @@ const SimpleSwapPage = () => {
 
   // Function to handle ETH amount change
   const handleETHChange = (e: any) => {
-
     const amount = parseFloat(e.target.value);
     setETHAmount(amount);
 
@@ -21,7 +20,6 @@ const SimpleSwapPage = () => {
       Number(ethers.utils.parseEther(amount.toString())) * tokenPerEth;
 
     setNCTAmount(ethers.utils.formatEther(calculatedNCTAmount.toString()));
-
   };
 
   const handleSwap = async (e: any) => {
@@ -31,19 +29,13 @@ const SimpleSwapPage = () => {
       console.log("swapping tokens");
 
       await convertEthToNCT(ETHAmount);
-
-      
-
-
     } catch (error) {
       console.log(error);
     }
-
   };
 
   return (
     <div className="w-full md:w-[80%] mx-auto p-4 bg-[#444] drop-shadow-lg rounded-md">
-      
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-4xl font-bold mb-2">Swap Now</h2>
@@ -66,7 +58,6 @@ const SimpleSwapPage = () => {
         className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4"
         onSubmit={handleSwap}
       >
-
         <label htmlFor="ETH" className="flex flex-col gap-2">
           <span className="bg-[#111] p-1 inline-block rounded-lg">
             Ethereum
@@ -104,9 +95,7 @@ const SimpleSwapPage = () => {
         <button className="p-2 bg-[#999] rounded-lg font-bold uppercase hover:bg-[#444]">
           swap
         </button>
-        
       </form>
-
     </div>
   );
 };

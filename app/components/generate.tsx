@@ -68,6 +68,8 @@ const Genereate = () => {
     }
   };
 
+  const swutch = false
+
   return (
     <div className="w-full p-4 bg-[#444] drop-shadow-lg rounded-md">
       
