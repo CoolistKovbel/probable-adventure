@@ -11,11 +11,14 @@ import { toast } from "react-toastify";
 const MintPage = () => {
 
   const handleNftMint = async (e: React.FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const nftAmount = formData.get("nftAmount");
 
     try {
+
       if (typeof window !== "undefined" && window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -39,12 +42,14 @@ const MintPage = () => {
         toast(await res.wait());
         toast(res);
       }
+
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
+    
     // Listen for the UserMinted event
     if (typeof window !== "undefined" && window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -66,6 +71,7 @@ const MintPage = () => {
         contractInstance.removeAllListeners("UserMinted");
       };
     }
+
   }, []); 
 
 
@@ -93,7 +99,7 @@ const MintPage = () => {
         </p>
       </header>
 
-      <div className="flex items-center flex-col md:flex-row justify-around w-full">
+      <div className="flex items-center flex-col md:flex-row justify-around w-full p-4">
 
         <div className="w-[300px] h-[300px] relative mx-auto mb-2">
           <Image
@@ -105,8 +111,9 @@ const MintPage = () => {
         </div>
 
         <div className="p-4 w-full md:w-[50%] bg-[#222] rounded-lg drop-shadow-lg">
-          <header className="mb-2">
-            <h2 className="text-4xl font-bold mb-2">De First Collection</h2>
+
+          <header className="mb-4">
+            <h2 className="text-4xl font-bold text-center mb-2">Photune Lightway Collection</h2>
             <p className="text-md mb-4">
               <span className="font-bold uppercase underline">
                 Description:{" "}
@@ -132,6 +139,7 @@ const MintPage = () => {
           >
             <input
               type="number"
+              placeholder="enter amount"
               id="nftAmount"
               name="nftAmount"
               className="bg-[#111] p-2 text-white  drop-shadow-lg rounded-md text-white  font-mono"
@@ -140,6 +148,7 @@ const MintPage = () => {
               submit
             </button>
           </form>
+
         </div>
 
       </div>

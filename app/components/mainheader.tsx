@@ -12,7 +12,6 @@ const MainHeader = () => {
   const [userNFT, setUserNft] = useState("")
 
 
-
   const connectWallet = async () => {
     try {
       console.log("weeoeeeeooooxs");
@@ -36,11 +35,11 @@ const MainHeader = () => {
   return (
     <header className="w-full bg-[#111] p-5 drop-shadow-lg rounded-lg">
 
-      <div className="flex items-center justify-between mb-5 md:flex-row flex-col">
+      <div className="flex items-center justify-between mb-5 md:flex-row flex-col w-full">
 
-        <h2 className="flex items-center md:gap-4 gap-4 mb-4 md:mb-0">
-          <Link href="/" className="font-bold text-xl md:text-2xl">PhotuneLightway</Link>
-          <div className="w-[32px] md:w-[100px] h-[32px] md:h-[100px] relative">
+        <h2 className="flex items-center md:gap-4 gap-4 mb-4 md:mb-0 w-full justify-between md:justify-none">
+          <Link href="/" className="font-bold text-2xl md:text-4xl">PhotuneLightway</Link>
+          <div className="w-[66px] md:w-[100px] h-[66px] md:h-[100px] relative">
             <Image src="/photune2.png" alt='hate my life' fill className="rounded-lg" />
           </div>
         </h2>
@@ -89,11 +88,12 @@ const MainHeader = () => {
           </h4>
 
           <div className="flex items-center  gap-5">
-            <p>Bal: {userBal.toString().slice(0, 4)}</p>
+            <p>Bal: {userBal}</p>
             <p>NFT HOLDing: {userNFT}</p>
           </div>
         </div>
       )}
+
     </header>
   );
 };

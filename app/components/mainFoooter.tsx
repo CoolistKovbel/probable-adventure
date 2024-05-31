@@ -24,9 +24,9 @@ const MainFooter = () => {
             <h3 className='text-2xl font-bold text-center mb-2'>Links</h3>
             <nav className='flex items-center flex-col gap-2'>
                 <Link href="/about" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">About</Link>
-                <Link href="/about" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">Trade</Link>
-                <Link href="/about" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">Mint</Link>
-                <Link href="/about" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">Generate</Link>
+                <Link href="/trade" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">Trade</Link>
+                <Link href="/mint" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">Mint</Link>
+                <Link href="/generate" className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full text-center">Generate</Link>
             </nav>
         </div>
 

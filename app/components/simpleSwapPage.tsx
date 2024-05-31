@@ -35,22 +35,26 @@ const SimpleSwapPage = () => {
   };
 
   return (
-    <div className="w-full md:w-[80%] mx-auto p-4 bg-[#444] drop-shadow-lg rounded-md">
+    <div className="w-full md:w-[80%] mx-auto bg-[#444] drop-shadow-lg rounded-md">
+
       <header className="mb-4">
-        <div className="flex items-center justify-between w-full">
+
+        <div className="flex items-center justify-between w-full bg-[#222] p-4">
           <h2 className="text-4xl font-bold mb-2">Swap Now</h2>
           <Link
             href="/trade"
-            className="text-4xl hover:bg-[#111] text-center rounded-lg"
+            className="text-4xl hover:bg-[#000] p-4 text-center rounded-lg"
           >
             <i>📍</i>
           </Link>
         </div>
-        <p className="text-gray-300 p-2">
+
+        <p className="text-gray-300 p-2 text-center">
           Convert your Native ETH token into our special NueroClump for a better
           price then the market. Gets your now and grow your bag through our
           generator
         </p>
+
       </header>
 
       {/* Swap form */}
@@ -58,8 +62,9 @@ const SimpleSwapPage = () => {
         className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4"
         onSubmit={handleSwap}
       >
+
         <label htmlFor="ETH" className="flex flex-col gap-2">
-          <span className="bg-[#111] p-1 inline-block rounded-lg">
+          <span className="bg-[#111] p-1 inline-block rounded-lg p-4">
             Ethereum
           </span>
           <input
@@ -79,7 +84,7 @@ const SimpleSwapPage = () => {
         <i className="text-[4rem] p-2 mx-auto cursor-pointer">🔄</i>
 
         <label htmlFor="NCT" className="flex flex-col gap-2">
-          <span className="bg-[#111] p-1 inline-block rounded-lg">
+          <span className="bg-[#111] p-1 inline-block rounded-lg p-4">
             NeruoClumpToken
           </span>
           <input
@@ -95,7 +100,9 @@ const SimpleSwapPage = () => {
         <button className="p-2 bg-[#999] rounded-lg font-bold uppercase hover:bg-[#444]">
           swap
         </button>
+
       </form>
+
     </div>
   );
 };

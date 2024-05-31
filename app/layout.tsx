@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { ModalProvider } from "./providers/model-provider";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { inter } from "./components/ui/fonts";
 
-const inter = Inter({ subsets: ["latin"] });
+import { ModalProvider } from "./providers/model-provider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "PhotuneLightway",

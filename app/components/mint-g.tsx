@@ -30,7 +30,7 @@ const MintG = () => {
         toast(`handling mint ${address} - ${nftAmount}`);
 
         const res = await contractInstance.mint(nftAmount, {
-          value: ethers.utils.parseEther((0.042).toString()),
+          value: ethers.utils.parseEther((0.042 * Number(nftAmount)).toString()),
           gasLimit: 600000,
         });
 

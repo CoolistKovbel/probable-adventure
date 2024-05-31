@@ -36,12 +36,12 @@ const Page = () => {
         <InfiniteMovingCardsDemo />
       </div>
 
-      <div className="bg-[#222] p-10 drop-shadow-lg rounded-lg">
-        <h2 className="text-2xl md:text-5xl font-bold text-center capitalize mb-5">
+      <div className="bg-[#222] p-5 drop-shadow-lg rounded-lg">
+        <h2 className="text-3xl md:text-5xl font-bold text-center capitalize mb-5">
           Want to start, get started with your own erc-721 token
         </h2>
 
-        <div className="bg-[#111] p-3 rounded-lg flex flex-col gap-5">
+        <div className="bg-[#111] p-3 rounded-lg flex flex-col gap-5 mb-4">
           <p>
             Each ERC-721 token is different in its own way. You can see it as
             &ldquo;captures a moment where you are able to bend light transform

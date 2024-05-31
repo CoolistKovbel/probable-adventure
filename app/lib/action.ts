@@ -1,5 +1,7 @@
 "use server";
 
+import { WaitList } from "../models/WaitList";
+import dbConnect from "./db";
 import { sendMail } from "./mail";
 
 export async function ContactEmail(formData: FormData) {
@@ -19,5 +21,28 @@ export async function ContactEmail(formData: FormData) {
   } catch (error) {
     console.log(error);
     return { message: "I am sorry but the request failed.... you got denied" };
+  }
+}
+
+
+export async function whiteList(formData: FormData) {
+  const email = formData.get("email");
+
+  try {
+
+    await dbConnect()
+
+    const NewMember = new WaitList({
+      email: email,
+    });
+
+    await NewMember.save();
+
+    return { status: "successfully added" };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: "Seems like theres an issue trying to add you, contact me...",
+    };
   }
 }
