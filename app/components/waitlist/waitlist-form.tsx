@@ -12,7 +12,7 @@ const WaitListForm = () => {
         name="email"
         id="email"
       />
-       <button className="text-[13px] bg-[#222] p-2 hover:text-yellow-500 mt-1 rounded-lg float-right mt-4">Subscribe</button>
+       <button className="text-[13px] bg-[#222] p-2 hover:text-yellow-500 mt-1 rounded-lg float-right mt-4 w-full font-bold uppercase">Subscribe</button>
     </form>
   );
 };

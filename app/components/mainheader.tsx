@@ -37,7 +37,7 @@ const MainHeader = () => {
 
       <div className="flex items-center justify-between mb-5 md:flex-row flex-col w-full">
 
-        <h2 className="flex items-center md:gap-4 gap-4 mb-4 md:mb-0 w-full justify-between md:justify-none">
+        <h2 className="flex items-center md:gap-4 gap-4 mb-4 md:mb-0 w-full justify-between md:justify-start">
           <Link href="/" className="font-bold text-2xl md:text-4xl">PhotuneLightway</Link>
           <div className="w-[66px] md:w-[100px] h-[66px] md:h-[100px] relative">
             <Image src="/photune2.png" alt='hate my life' fill className="rounded-lg" />
