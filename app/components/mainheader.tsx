@@ -55,7 +55,7 @@ const MainHeader = () => {
   },[])
 
   return (
-    <header className="w-full bg-[#111] p-5 drop-shadow-lg rounded-lg">
+    <header className="w-full bg-[#111] p-5 drop-shadow-lg text-white">
 
       <div className="flex items-center justify-between mb-5 md:flex-row flex-col w-full">
 
@@ -95,7 +95,7 @@ const MainHeader = () => {
           </nav>
         ) : (
           <button
-            className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold"
+            className="p-2 bg-[#222] rounded-md hover:bg-[#444] font-bold w-full"
             onClick={connectWallet}
           >
             Connect Now
@@ -104,7 +104,7 @@ const MainHeader = () => {
       </div>
 
       {user && (
-        <div className="flex items-center justify-between border-t-2 p-3">
+        <div className="flex items-center justify-between border-t-2 p-3 w-full">
           <h4>
             Hello, <span>{userAccount.substring(0, 7)}</span>
           </h4>

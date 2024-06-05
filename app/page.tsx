@@ -8,12 +8,13 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full p-1  bg-black  relative flex items-center justify-center flex-col text-white">
+    <main className="min-h-screen w-full  bg-black  relative flex items-center justify-center flex-col text-white">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black  "></div>
 
-      <MainHeader />
+      
 
-      <section className="flex items-center justify-between flex-col mt-10 gap-5 p-10">
+      <section className="flex items-center justify-between flex-col mt-10 gap-5 ">
+        
         <header className="w-full md:w-[80%] bg-[#111] p-10 rounded-lg drop-shadow-lg flex items-center justify-around mx-auto md:flex-row flex-col gap-5">
           <div className="w-full md:w-[40%] text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-5 capitalize">
@@ -52,7 +53,7 @@ export default function Home() {
         <Genereate />
       </section>
 
-      <MainFooter />
+      
     </main>
   );
 }

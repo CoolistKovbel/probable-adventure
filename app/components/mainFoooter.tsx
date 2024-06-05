@@ -4,7 +4,7 @@ import React from 'react'
 
 const MainFooter = () => {
   return (
-    <footer className='w-full flex items-center p-10 bg-[#111] mt-10 rounded-md drop-shadow-lg w-full justify-between flex-col md:flex-row gap-4 md:gap-0'>
+    <footer className='w-full flex items-center p-10 bg-[#111] text-white mt-10 rounded-md drop-shadow-lg w-full justify-between flex-col md:flex-row gap-4 md:gap-0'>
 
         <header className='flex items-center '>
 
