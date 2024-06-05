@@ -408,3 +408,15 @@ export const viewVaults = async () => {
     console.log(error);
   }
 };
+
+export const userVaultz = async () => {
+  try {
+
+    console.log("grabbing user vqaluta")
+
+    
+  } catch (error) {
+    console.log(error)
+    console.log("error")
+  }
+}

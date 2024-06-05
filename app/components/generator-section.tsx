@@ -106,7 +106,9 @@ const GeneratorSection = () => {
         console.log(vaults, "in de clie4nt");
         console.log("userVaults", userVault);
 
-        setUserStake(userVault as string);
+        console.log("user valuts")
+        // setUserStake(userVault as string);
+        
         setDeVaults(vaults);
         setUserNFT(ownsNFT);
       }
