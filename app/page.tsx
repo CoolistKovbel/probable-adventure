@@ -14,18 +14,17 @@ export default function Home() {
       <MainHeader />
 
       <section className="flex items-center justify-between flex-col mt-10 gap-5 p-10">
-
         <header className="w-full md:w-[80%] bg-[#111] p-10 rounded-lg drop-shadow-lg flex items-center justify-around mx-auto md:flex-row flex-col gap-5">
-         
           <div className="w-full md:w-[40%] text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-5 capitalize">
-              Hold the light and paint a new way
+              Be the particle that bends light
             </h2>
 
             <p className="text-gray-500 mb-5">
-              Own a NFT that get you to think earn tokens, make you look cool,
-              and be able to unlock the next part. Get started and turn nothing
-              into something.
+              At times, everything gets hard, but its what you do with
+              everything that you may take in, and its what you when you let
+              out. Coming to this dApp feel free to mint, stake, and not miss
+              out on rewards.
             </p>
 
             <Link
@@ -44,7 +43,6 @@ export default function Home() {
               fill
             />
           </div>
-
         </header>
 
         <MintPage />
@@ -52,7 +50,6 @@ export default function Home() {
         <SimpleSwapPage />
 
         <Genereate />
-
       </section>
 
       <MainFooter />

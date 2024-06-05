@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getBlockNum, getEthereumAccount, getTotalAmountNFTOwn } from "../lib/web3";
 import Image from "next/image";
 
@@ -9,7 +9,7 @@ const MainHeader = () => {
   const [user, setUser] = useState(false);
   const [userAccount, setUserAccount] = useState("")
   const [userBal, setUserBal] = useState<any>("")
-  const [userNFT, setUserNft] = useState("")
+  const [userNFT, setUserNft] = useState<any>("")
 
 
   const connectWallet = async () => {
@@ -31,6 +31,25 @@ const MainHeader = () => {
       console.log(error);
     }
   };
+
+
+  useEffect(() => {
+
+    const gg = async () => {
+      try {
+        console.log("auto log")
+
+        await connectWallet()
+
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    gg()
+
+  },[])
 
   return (
     <header className="w-full bg-[#111] p-5 drop-shadow-lg rounded-lg">
@@ -88,8 +107,8 @@ const MainHeader = () => {
           </h4>
 
           <div className="flex items-center  gap-5">
-            <p>Bal: {userBal}</p>
-            <p>NFT HOLDing: {userNFT}</p>
+            <p>Bal: {Number(userBal?.toFixed(2))}</p>
+            <p>NFTs: {userNFT}</p>
           </div>
         </div>
       )}
