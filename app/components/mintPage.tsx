@@ -76,12 +76,12 @@ const MintPage = () => {
 
 
   return (
-    <div className="w-full md:w-[80%] mx-auto bg-[#444] drop-shadow-lg rounded-md h-full md:h-[700px] flex flex-col justify-around">
+    <div className="w-full md:w-[95%] mx-auto bg-[#111] drop-shadow-lg rounded-md h-full md:h-[700px] flex flex-col justify-around">
 
       <header className="w-full mb-2">
 
-        <div className="flex items-center justify-between w-full mb-4  p-5">
-          <h2 className="text-5xl font-bold">Mint Now</h2>
+        <div className="flex items-center justify-between w-full  p-5">
+          <h2 className="text-5xl font-bold bg-black p-3">Mint Now</h2>
           <Link
             href="/mint"
             className="text-4xl hover:bg-[#111] text-center rounded-lg"
@@ -91,11 +91,7 @@ const MintPage = () => {
         </div>
 
         <p className="text-gray-300 p-4 bg-[#222]">
-          Over 222 unique tokens within the collection allow you to be able to
-          setup for minting to be able to earn more token. Get your first NFT
-          collectors item where you will be able to not only be able to use for
-          whatever your heart desires but also be able to get and earn
-          NueroClump token where you will be able to use for more cases later.
+          Mint your very own unique NFT a erc-721 token with over 222 different variations. Be able to collect them all or just buy it to own it. By owning this token you will be able to have access to other certain dApps as well as be able to earn NeuroClump Token.
         </p>
       </header>
 
@@ -122,7 +118,7 @@ const MintPage = () => {
               powerful yet simple, takes in the darkness and produces it into
               light. Not just any ordinary light, but a light so thin yet so
               powerful, that color gets produced even in the darkest depths of
-              space where a tune so creates brings harmony all around.
+              space where a tune so pure creates brings harmony all around.
             </p>
 
             <p className="text-sm text-[#000] text-center p-2 bg-[#999] rounded-lg capitalize">

@@ -1,3 +1,4 @@
+
 import { ethers } from "ethers";
 
 import token from "./abis/token.json";
@@ -16,7 +17,7 @@ export const NeuronClumpTokenAddress = "0x05F868A3F0d4b30d402b55E45895d527F5783D
 // smart contract vault
 //fix
 // export const PhotuneLightwayContract = "0x98aAE939b000653429F0046542a6Bac2C7eF7217"; //main
-export const PhotuneLightwayContract = "0x5990A885256B113AeA89105A04329317d672B3F6";
+export const PhotuneLightwayContract = "0x93f8dddd876c7dBE3323723500e83E202A7C96CC";
 
 export const getEthereumObject = () => {
   return typeof window !== "undefined" ? window.ethereum : null;
@@ -257,8 +258,6 @@ export const createVault = async (formData: FormData) => {
   }
 };
 
-// ============
-
 // Approve function
 export const approveTokenTransfer = async (amount: any) => {
   try {
@@ -300,33 +299,34 @@ export const grabStakeVault = async () => {
 
     const vaultData = await contractInstance.getAllVaults();
 
-    // Assuming all arrays have the same length
-    const numVaults = vaultData[0].length;
-    const vaults = [];
+    // // Assuming all arrays have the same length
+    // const numVaults = vaultData[0].length;        
+    // const vaults = [];
 
-    for (let i = 0; i < numVaults; i++) {
-      const vault = {
-        name: vaultData[0][i],
-        owner: vaultData[1][i],
-        multiplier: vaultData[2][i],
-        type: vaultData[3][i],
-        totalAmount: vaultData[4][i],
-        creationTimestamp: vaultData[5][i]
-      };
+    // for (let i = 0; i < numVaults; i++) {
+    //   const vault = {
+    //     name: vaultData[0][i],
+    //     owner: vaultData[1][i],
+    //     multiplier: vaultData[2][i],
+    //     type: vaultData[3][i],
+    //     totalAmount: vaultData[4][i],
+    //     creationTimestamp: vaultData[5][i]
+    //   };
 
-      vaults.push(vault);
-    }
+    //   vaults.push(vault);
+    // }
 
-    console.log("All Vaults:", vaults);
+    // console.log("All Vaults:", vaults);
 
-    return vaults;
+    // return vaults;
+
+    console.log("working?", vaultData)
     
   } catch (error) {
     console.log("Error:", error);
     return [];
   }
 };
-
 
 
 

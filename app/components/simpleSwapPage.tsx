@@ -35,9 +35,9 @@ const SimpleSwapPage = () => {
   };
 
   return (
-    <div className="w-full md:w-[80%] mx-auto bg-[#444] drop-shadow-lg rounded-md">
+    <div className="w-full md:w-[95%] mx-auto bg-[#111] drop-shadow-lg rounded-md flex justify-around">
 
-      <header className="mb-4">
+      <header className="mb-4 w-[50%] flex items-center flex-col justify-center">
 
         <div className="flex items-center justify-between w-full bg-[#222] p-4">
           <h2 className="text-4xl font-bold mb-2">Swap Now</h2>
@@ -59,7 +59,7 @@ const SimpleSwapPage = () => {
 
       {/* Swap form */}
       <form
-        className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4"
+        className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4 w-[30%]"
         onSubmit={handleSwap}
       >
 

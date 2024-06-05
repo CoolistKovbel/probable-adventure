@@ -11,18 +11,25 @@ const Genereate = () => {
   const [userStake, setUserStake] = useState("");
   const { onOpen } = useModal();
 
+
+  
+
   // Grab all the vaults
   useEffect(() => {
     const int = async () => {
+
       const vaults = await grabStakeVault();
 
-      console.log(vaults, "in de clie4nt");
+      console.log(deVaults, "in de clie4nt");
 
       setDeVaults(vaults);
     };
 
     int();
+
   }, []);
+
+  console.log(deVaults, "in de clie4nt");
 
   const claimTokens = async (e: any, vaultId: any) => {
     e.preventDefault();
@@ -67,7 +74,8 @@ const Genereate = () => {
   const swutch = false;
 
   return (
-    <div className="w-full mx-auto p-4 bg-[#444] drop-shadow-lg rounded-md ">
+    <div className="w-full mx-auto p-4 bg-[#111] drop-shadow-lg rounded-md ">
+
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-4xl font-bold mb-2">Particle Becon</h2>

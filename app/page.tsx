@@ -1,9 +1,7 @@
 import Image from "next/image";
-import MainHeader from "./components/mainheader";
 import MintPage from "./components/mintPage";
 import SimpleSwapPage from "./components/simpleSwapPage";
 import Genereate from "./components/generate";
-import MainFooter from "./components/mainFoooter";
 import Link from "next/link";
 
 export default function Home() {
@@ -11,11 +9,9 @@ export default function Home() {
     <main className="min-h-screen w-full  bg-black  relative flex items-center justify-center flex-col text-white">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black  "></div>
 
-      
-
       <section className="flex items-center justify-between flex-col mt-10 gap-5 ">
         
-        <header className="w-full md:w-[80%] bg-[#111] p-10 rounded-lg drop-shadow-lg flex items-center justify-around mx-auto md:flex-row flex-col gap-5">
+        <header className="w-full md:w-[95%] bg-[#111] p-10 rounded-lg drop-shadow-lg flex items-center justify-around mx-auto md:flex-row flex-col gap-5">
           <div className="w-full md:w-[40%] text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-5 capitalize">
               Be the particle that bends light
@@ -52,8 +48,6 @@ export default function Home() {
 
         <Genereate />
       </section>
-
-      
     </main>
   );
 }
