@@ -4,12 +4,15 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getBlockNum, getEthereumAccount, getTotalAmountNFTOwn } from "../lib/web3";
 import Image from "next/image";
+import { BigNumber } from "ethers";
 
 const MainHeader = () => {
   const [user, setUser] = useState(false);
   const [userAccount, setUserAccount] = useState("")
   const [userBal, setUserBal] = useState<any>("")
   const [userNFT, setUserNft] = useState<any>("")
+
+  const userBalNumber = BigNumber.isBigNumber(userBal) ? userBal.toNumber() : userBal;
 
 
   const connectWallet = async () => {
@@ -57,7 +60,7 @@ const MainHeader = () => {
       <div className="flex items-center justify-between mb-5 md:flex-row flex-col w-full">
 
         <h2 className="flex items-center md:gap-4 gap-4 mb-4 md:mb-0 w-full justify-between md:justify-start">
-          <Link href="/" className="font-bold text-2xl md:text-4xl">PhotuneLightway</Link>
+          <Link href="/" className="font-bold text-2xl md:text-3xl">PhotuneLightway</Link>
           <div className="w-[66px] md:w-[100px] h-[66px] md:h-[100px] relative">
             <Image src="/photune2.png" alt='hate my life' fill className="rounded-lg" />
           </div>
@@ -107,7 +110,7 @@ const MainHeader = () => {
           </h4>
 
           <div className="flex items-center  gap-5">
-            <p>Bal: {Number(userBal?.toFixed(2))}</p>
+            <p>Bal: {userBalNumber}</p>
             <p>NFTs: {userNFT}</p>
           </div>
         </div>
