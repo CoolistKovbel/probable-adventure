@@ -1,12 +1,12 @@
-import React from "react";
 
 const Page = () => {
   const avai = false;
 
   return (
     <section className="w-full min-h-screen">
+
       <header className="w-full h-[100px] py-10 bg-[#222] text-center">
-        <h1 className="font-bold">PhotuneLightway Swap</h1>
+        <h1 className="text-2xl font-bold">PhotuneLightway Swap</h1>
       </header>
 
       {avai ? (
@@ -16,6 +16,7 @@ const Page = () => {
               htmlFor="to"
               className="flex items-center flex-col w-[50%] bg-[#444] mb-3 p-4 rounded-lg drop-shadow-lg"
             >
+              
               <div className="flex items-center gap-3">
                 <span className="font-bold bg-[#222] p-1 rounded-lg">
                   token1:
@@ -63,7 +64,7 @@ const Page = () => {
           </form>
         </div>
       ) : (
-        <div className="w-full h-full bg-[#111] p-10">
+        <div className="w-full min-h-screen bg-[#333] p-10">
           <h2 className="font-bold">Curremtly in progress ....</h2>
         </div>
       )}

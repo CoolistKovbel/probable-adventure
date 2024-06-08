@@ -35,12 +35,10 @@ const SimpleSwapPage = () => {
   };
 
   return (
-    <div className="w-full md:w-[95%] mx-auto bg-[#111] drop-shadow-lg rounded-md flex justify-around">
-
-      <header className="mb-4 w-[50%] flex items-center flex-col justify-center">
-
-        <div className="flex items-center justify-between w-full bg-[#222] p-4">
-          <h2 className="text-4xl font-bold mb-2">Swap Now</h2>
+    <div className="w-full md:w-[95%] mx-auto bg-[#111] drop-shadow-lg rounded-md flex justify-around p-10 flex-col">
+      <header className="mb-4 md:w-[50%] flex items-center flex-col justify-center bg-[#444] p-10 rounded-lg">
+        <div className="flex items-center justify-between w-full bg-[#222] p-4 rounded-lg">
+          <h2 className="text-2xl  md:text-4xl font-bold mb-2">Swap Now</h2>
           <Link
             href="/trade"
             className="text-4xl hover:bg-[#000] p-4 text-center rounded-lg"
@@ -50,19 +48,17 @@ const SimpleSwapPage = () => {
         </div>
 
         <p className="text-gray-300 p-2 text-center">
-          Convert your Native ETH token into our special NueroClump for a better
-          price then the market. Gets your now and grow your bag through our
-          generator
+          By using our intergrate contract swap you will be able to get the best
+          price, a good amount of tokens, and trade through the price
+          differences.
         </p>
-
       </header>
 
       {/* Swap form */}
       <form
-        className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4 w-[30%]"
+        className="p-4 flex flex-col bg-[#222] rounded-md drop-shadow-lg gap-4 md:w-[30%]"
         onSubmit={handleSwap}
       >
-
         <label htmlFor="ETH" className="flex flex-col gap-2">
           <span className="bg-[#111] p-1 inline-block rounded-lg p-4">
             Ethereum
@@ -100,9 +96,7 @@ const SimpleSwapPage = () => {
         <button className="p-2 bg-[#999] rounded-lg font-bold uppercase hover:bg-[#444]">
           swap
         </button>
-
       </form>
-
     </div>
   );
 };

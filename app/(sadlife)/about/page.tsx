@@ -3,11 +3,13 @@ import React from "react";
 const Page = () => {
   return (
     <section className="w-full min-h-screen w-full">
+
       <header className="bg-[#111] text-center p-10 ">
         <h1 className="text-2xl font-bold">About PhotuneLightway</h1>
       </header>
 
-      <div className="p-10 flex flex-col gap-4 bg-[#222] ">
+      {/* Maybe make it better if people dont understand */}
+      <div className="p-10 flex flex-col gap-4 bg-[#222] min-h-screen">
         <p>
           Been on a small learning path trying to learn and work while
           stressing. Life isnt too well in those cases, thought itd be nice too

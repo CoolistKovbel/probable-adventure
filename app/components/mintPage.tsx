@@ -91,7 +91,7 @@ const MintPage = () => {
         </div>
 
         <p className="text-gray-300 p-4 bg-[#222]">
-          Mint your very own unique NFT a erc-721 token with over 222 different variations. Be able to collect them all or just buy it to own it. By owning this token you will be able to have access to other certain dApps as well as be able to earn NeuroClump Token.
+          Mint your very own unique NFT a erc-721 token with over 222 different variations. Be able to collect them all or just buy it to own it. By owning this token you will be able to earn NeuroClumpToken in our partical accelarator as well.
         </p>
       </header>
 

@@ -23,6 +23,34 @@ export const getEthereumObject = () => {
   return typeof window !== "undefined" ? window.ethereum : null;
 };
 
+export const getUserNFtAmount = async () => {
+  try {
+    
+    // UserOwns
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the signer
+    const signer = provider.getSigner();
+    const user = await signer.getAddress()
+
+    const contractInstance = new ethers.Contract(
+      nftTokenAddress ,
+      nftContract.abi,
+      signer
+    );
+
+
+
+    const gg = await contractInstance.UserOwns(user)
+
+
+    return gg
+  
+  } catch (error) {
+    console.log("error")
+  }
+}
+
 export const getEthereumAccount = async () => {
   try {
     const ethereum: Window = getEthereumObject();

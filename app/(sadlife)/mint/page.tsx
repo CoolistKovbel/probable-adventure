@@ -6,14 +6,16 @@ import React from "react";
 
 const Page = () => {
   return (
-    <section className="w-full min-h-screen flex flex-col gap-5 mt-5">
+    <section className="w-full min-h-screen flex flex-col gap-5 ">
 
-      <header className="text-center p-2 bg-[#222] ">
+      <header className="text-center p-2 bg-[#111] ">
+
         <h1 className="text-3xl md:text-5xl font-bold  p-5">
           PhotuneLightway Collections
         </h1>
 
         <div className="flex items-center p-10 flex-col">
+          
           <div className="w-full md:w-[300px] h-[300px] relative mx-auto">
             <Image
               src="/photune.png"
