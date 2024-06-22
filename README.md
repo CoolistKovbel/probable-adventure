@@ -11,13 +11,16 @@ Be sure to grab a hold of Neruoclump token to be able to use for future transact
 
 Welcome to PhotanLight join aboard by minting yourself some tokens.
 
+NFT Collection address:
+0xBB1dfF8cb40cBCf395A7e42Fc4A9BCE663D520CB
+
 
 # PhotanLight Features
 
 stake token to recieve a verity of other tokens. 
 
 NueroClump Token
-Contract: 0x05F868A3F0d4b30d402b55E45895d527F5783DA3
+Contract: 0x05F868A3F0d4b30d402b55E45895d527F5783DA3 - main
 
 EtonAdapter Token
 Contract: 0x8F4eb6a6Bcfd5Af48aa9068a907c327e0e092BA4

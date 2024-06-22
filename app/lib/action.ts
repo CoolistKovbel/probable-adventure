@@ -24,13 +24,9 @@ export async function ContactEmail(formData: FormData) {
   }
 }
 
-
-export async function whiteList(formData: FormData) {
-  const email = formData.get("email");
-
+export async function whiteList(email: any) {
   try {
-
-    await dbConnect()
+    await dbConnect();
 
     const NewMember = new WaitList({
       email: email,

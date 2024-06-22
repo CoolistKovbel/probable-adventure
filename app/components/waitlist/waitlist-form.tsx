@@ -3,8 +3,24 @@
 import { whiteList } from "../../lib/action";
 
 const WaitListForm = () => {
+
+
+  const handleSubmit = async (e:any) => {
+    e.preventDefault()
+
+    try {                                      
+      
+      await whiteList(e.target.email.value)
+      
+    } catch (error) {
+      console.log("error")
+    }
+  }
+
+
+
   return (
-    <form action={whiteList}>
+    <form onSubmit={handleSubmit}>
       <input
         type="email"
         placeholder="enter email here"

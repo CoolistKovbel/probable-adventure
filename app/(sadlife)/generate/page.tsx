@@ -2,6 +2,7 @@ import GeneratorSection from "@/app/components/generator-section";
 import React from "react";
 
 const Page = () => {
+
   return (
     <section className="w-full min-h-screen bg-[#333]">
 
@@ -21,6 +22,15 @@ const Page = () => {
       )}
 
       {/* <GeneratorSection /> */}
+
+
+      <div>
+
+      </div>
+
+
+
+
     </section>
   );
 };
