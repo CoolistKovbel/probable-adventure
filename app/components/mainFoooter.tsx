@@ -16,7 +16,7 @@ const MainFooter = () => {
                 <p className='text-md text-gray-500'>
                     Capture the moment, start your journey through crypto safely here.
                 </p>
-                <p className='text-sm text-center text-gray-500'>Join <Link href="https://t.me/+rwCcBXlUjTozYWMx">Telegram 🕊️</Link></p>
+                <p className='text-sm text-center text-gray-500'>Join <Link href="https://t.me/+rwCcBXlUjTozYWMx" className='p-2 bg-[#000] hover:bg-[#222] text-yellow-500 font-bold'>Telegram 🕊️</Link></p>
             </div>
 
         </header>
