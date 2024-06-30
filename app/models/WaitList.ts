@@ -9,7 +9,6 @@ const waitListSchema = new mongoose.Schema<IWaitList>(
     email: {
       type: String,
       required: true,
-      unique: true,
     },
   },
   { timestamps: true }

@@ -35,7 +35,7 @@ const SimpleSwapPage = () => {
   };
 
   return (
-    <div className="w-full md:w-[95%] mx-auto bg-[#111] drop-shadow-lg rounded-md flex justify-around p-10 flex-col">
+    <div className="w-full md:w-[95%] mx-auto bg-[#111] drop-shadow-lg rounded-md flex justify-around p-10 flex-col md:flex-row">
       <header className="mb-4 md:w-[50%] flex items-center flex-col justify-center bg-[#444] p-10 rounded-lg">
         <div className="flex items-center justify-between w-full bg-[#222] p-4 rounded-lg">
           <h2 className="text-2xl  md:text-4xl font-bold mb-2">Swap Now</h2>

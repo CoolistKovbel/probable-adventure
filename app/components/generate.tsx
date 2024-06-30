@@ -4,15 +4,10 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { grabStakeVault, leaveVault } from "../lib/web3";
 import { useModal } from "../hooks/use-modal-store";
-import { ethers } from "ethers";
 
 const Genereate = () => {
   const [deVaults, setDeVaults] = useState<any>([]);
-  const [userStake, setUserStake] = useState("");
   const { onOpen } = useModal();
-
-
-  
 
   // Grab all the vaults
   useEffect(() => {
@@ -74,7 +69,7 @@ const Genereate = () => {
   const swutch = false;
 
   return (
-    <div className="w-full mx-auto p-4 bg-[#111] drop-shadow-lg rounded-md ">
+    <div className="w-full mx-auto p-4 bg-[#111] drop-shadow-lg rounded-md my-10">
 
       <header className="mb-4">
         <div className="flex items-center justify-between w-full">
