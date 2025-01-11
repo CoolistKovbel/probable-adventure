@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { inter } from "./components/ui/fonts";
 
 import { ModalProvider } from "./providers/model-provider";
 import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import MainHeader from "./components/mainheader";
 import MainFooter from "./components/mainFoooter";
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="w-full" >
+      <body className="w-full">
         <MainHeader />
         {children}
         <ModalProvider />
