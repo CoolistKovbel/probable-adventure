@@ -37,5 +37,4 @@ Contract: 0x3336deBc102ce50a707CF8Df8c626aB338D55539
 
 ====
 parrticle aceclotr
-
-want to earn passive income...
+coming soon...
